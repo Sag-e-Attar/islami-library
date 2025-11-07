@@ -1,0 +1,408 @@
+/* Mehr Nastaliq Font */
+@font-face {
+  font-family: 'Mehr Nastaliq Web';
+  src: url('/fonts/Mehr_Nastaliq_Web_v.2.0.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Apply Mehr Nastaliq font globally with 1.5x size increase */
+:root {
+  --vp-font-family-base: 'Mehr Nastaliq Web', serif;
+  --vp-font-family-mono: 'Courier New', monospace;
+
+  /* Hero title gradient - Emerald to Teal */
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: linear-gradient(135deg, #059669 0%, #14b8a6 50%, #06b6d4 100%);
+}
+
+.dark {
+  --vp-home-hero-name-background: linear-gradient(135deg, #10b981 0%, #2dd4bf 50%, #22d3ee 100%);
+}
+
+/* Scale up base font size by 1.5x for Nastaliq - only on html to avoid cascading */
+html {
+  font-size: 24px; /* 16px * 1.5 = 24px */
+}
+
+/* Ensure VitePress container uses the scaled base */
+#app {
+  font-size: 1rem;
+}
+
+/* Scale up navigation font sizes */
+.VPNavBar,
+.VPNav,
+.VPLocalNav {
+  font-size: 1rem !important;
+}
+
+/* Sidebar with slightly smaller size (21px) and proper line-height */
+.VPSidebar,
+.VPSidebarItem {
+  font-size: 21px !important;
+  line-height: 1.6 !important;
+}
+
+.VPSidebar *,
+.VPSidebarItem *,
+.VPSidebar a,
+.VPSidebarItem a,
+.VPSidebarItem .text {
+  font-size: 0.8rem !important;
+  line-height: 1.6 !important;
+}
+
+/* TOC with reduced size (16px = 21px - 5px) and proper line-height */
+.VPDocAside,
+.VPDocAsideOutline {
+  font-size: 16px !important;
+  line-height: 1.6 !important;
+}
+
+/* TOC title larger than links */
+.VPDocAside .outline-title,
+.VPDocAsideOutline .outline-title,
+#doc-outline-aria-label {
+  font-size: 1rem !important;
+  line-height: 1.8 !important;
+  font-weight: normal !important;
+}
+
+.VPDocAside .outline-link {
+  font-size: 16px !important;
+  line-height: 220%!important;
+  padding-right: 4px!important;
+}
+
+/* Scale up navigation items */
+.VPNavBar .title {
+  @apply text-xl;
+}
+.VPNavBarTitle,
+.VPNavBarMenuLink {
+  font-size: 1rem !important;
+}
+
+/* Fix hero section font rendering - Nastaliq doesn't support bold */
+.VPHero .name,
+.VPHero .text,
+.VPHero .tagline {
+  font-weight: normal !important;
+  letter-spacing: normal !important;
+}
+
+/* Hero main title with Lalezar font and gradient */
+.VPHero .name {
+  font-family: 'Lalezar', 'Mehr Nastaliq Web', system-ui, sans-serif !important;
+  font-size: 3rem !important;
+  line-height: 1 !important;
+  margin-bottom: 0.6rem !important;
+}
+
+.VPHero .name,
+.VPHero .name .clip {
+  color: transparent;
+  background: var(--vp-home-hero-name-background);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Gradient effect on first button */
+.VPHome .VPHero .VPButton.brand {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.VPHome .VPHero .VPButton.brand:hover {
+  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3);
+}
+
+.dark .VPHome .VPHero .VPButton.brand {
+  background: linear-gradient(135deg, #34d399 0%, #6ee7b7 100%);
+}
+
+.dark .VPHome .VPHero .VPButton.brand:hover {
+  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+  box-shadow: 0 8px 16px rgba(52, 211, 153, 0.4);
+}
+
+/* Hero buttons */
+.VPHome .VPHero .VPButton.brand,
+.VPHome .VPHero .VPButton.alt {
+  font-size: 1rem !important;
+  line-height: 90% !important;
+  padding: 0.4em 1rem 0.6rem !important;
+  border-radius: 30px;
+}
+
+/* Hero subtitle - decrease font size by 10px */
+.VPHero .text {
+  line-height: 1.7;
+  font-size: 1.5rem !important;
+}
+
+.VPHero .tagline {
+  line-height: 1.9;
+}
+
+/* Hero Section - Decorative background under logo */
+.VPHome .VPHero {
+  position: relative;
+  overflow: hidden;
+}
+
+.VPHome .VPHero.has-image .image-container {
+  position: relative;
+}
+
+.VPHome .VPHero.has-image .image-bg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 500px;
+  height: 500px;
+  background:
+    radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.6) 0%, rgba(52, 211, 153, 0.4) 25%, rgba(20, 184, 166, 0.2) 50%, transparent 70%);
+  filter: blur(60px);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.VPHome .VPHero.has-image:hover .image-bg {
+  transform: translate(-50%, -50%) scale(0.7);
+  filter: blur(40px);
+  opacity: 0.7;
+}
+
+/* Dark mode adjustments */
+.dark .VPHome .VPHero.has-image .image-bg {
+  background:
+    radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.7) 0%, rgba(52, 211, 153, 0.5) 25%, rgba(34, 211, 238, 0.3) 50%, transparent 70%);
+}
+
+.dark .VPHome .VPHero.has-image:hover .image-bg {
+  opacity: 0.5;
+}
+
+/* Show the logo temporarily to verify it loads */
+.VPHome .VPHero .image-src {
+  opacity: 0.3;
+  max-width: 300px;
+  transition: opacity 0.3s ease;
+}
+
+.VPHome .VPHero:hover .image-src {
+  opacity: 0.5;
+}
+
+/* Don't change layout - VitePress handles RTL automatically */
+
+/* Adjust line height for better readability with larger Nastaliq font */
+.vp-doc .author {
+  @apply text-lg md:text-xl font-bold bg-emerald-600 dark:bg-emerald-500 text-white inline-block px-3 py-1.5 rounded-md;
+}
+.vp-doc p,
+.vp-doc li {
+  line-height: 2.2;
+}
+
+/* Better spacing for Urdu content - Nastaliq doesn't support bold */
+.vp-doc h1,
+.vp-doc h2,
+.vp-doc h3,
+.vp-doc h4,
+.vp-doc h5,
+.vp-doc h6 {
+  font-weight: normal !important;
+  line-height: 2;
+  letter-spacing: normal !important;
+}
+
+/* Book titles with Lalezar font and emerald colors using @apply */
+.vp-doc h1 {
+  font-family: 'Lalezar', 'Mehr Nastaliq Web', system-ui, sans-serif !important;
+  font-size: 2rem !important;
+  @apply text-amber-500 dark:text-amber-400;
+}
+
+.vp-doc h2 {
+  font-size: 1.4rem !important;
+  margin: 0px 0 16px;
+  border-top: 0;
+  padding-top: 0;
+  @apply text-emerald-600 dark:text-emerald-400;
+}
+.vp-doc h3 {
+  font-size: 1.2rem !important;
+  margin: 0px 0 10px;
+  border-top: 0;
+  padding-top: 0;
+  @apply text-orange-500 dark:text-orange-400;
+}
+.vp-doc .header-anchor {
+    top: 0px !important;
+}
+
+/* Highlight style for strong tags - similar to <mark> */
+.vp-doc strong {
+  background-color: rgba(16, 185, 129, 0.15); /* Light emerald highlight */
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  font-weight: normal; /* Nastaliq doesn't support bold */
+}
+
+.dark .vp-doc strong {
+  background-color: rgba(52, 211, 153, 0.2); /* Slightly brighter in dark mode */
+}
+/* Arabic text with Lateef font */
+.arabic-text {
+  font-family: 'Lateef', serif;
+  font-size: 1.2rem;
+  line-height: 2;
+  color: #dc2626;
+}
+
+/* Dark mode support for arabic-text */
+.dark .arabic-text {
+  color: #fb7185;
+}
+
+/* Code blocks and blockquotes styling */
+.vp-doc code,
+.vp-doc pre,
+.vp-doc pre code,
+.vp-doc div[class*="language-"] pre,
+.vp-doc div[class*="language-"] code,
+.vp-doc blockquote,
+.vp-doc blockquote > p {
+  font-family: 'Lateef', serif !important;
+  font-size: 1.2rem !important;
+  line-height: 2 !important;
+  color: #dc2626 !important;
+}
+
+.dark .vp-doc code,
+.dark .vp-doc pre,
+.dark .vp-doc pre code,
+.dark .vp-doc div[class*="language-"] pre,
+.dark .vp-doc div[class*="language-"] code,
+.dark .vp-doc blockquote,
+.dark .vp-doc blockquote > p {
+  color: #fb7185 !important;
+}
+.VPFeature .title {
+    font-size: 1rem;
+    line-height: 1.5rem
+}
+.VPFeature .details {
+    font-size: 0.8rem;
+    line-height: 1.2rem
+}
+
+/* Custom Footer */
+.custom-footer {
+  border-top: 1px solid var(--vp-c-divider);
+  padding: 1rem 1.5rem;
+  text-align: center;
+}
+
+.footer-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.footer-text {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--vp-c-text-2);
+  margin-bottom: 0.25rem;
+  margin-top: 0;
+}
+
+.footer-copyright {
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: var(--vp-c-text-3);
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
+.footer-link {
+  color: var(--vp-c-brand-1);
+  text-decoration: none;
+  font-weight: 600;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: var(--vp-c-brand-2);
+}
+
+.VPDocAside {
+  /* Ensure the container itself has a defined height or max-height */
+  max-height: calc(100vh - var(--vp-nav-height) - 48px);
+  overflow-y: auto; /* Adds a scrollbar when content overflows */
+  position: sticky; /* Keeps it in place as the main page scrolls */
+  top: var(--vp-nav-height); /* Aligns it below the navbar */
+  scroll-behavior: smooth; /* Smooth scrolling for auto-scroll */
+}
+
+/* Ensure the inner TOC list doesn't have conflicting styles */
+.VPDocAside .vt-doc-outline {
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+/* Add padding to ensure active items don't get cut off at edges */
+.VPDocAsideOutline {
+  padding-bottom: 80px;
+}
+
+/* Also add padding to the content wrapper */
+.VPDocAsideOutline .content {
+  padding-bottom: 40px;
+}
+
+/* Local Search Modal - Use Mehr Nastaliq font */
+.VPLocalSearchBox input,
+.VPLocalSearchBox input::placeholder {
+  font-family: 'Mehr Nastaliq Web', serif !important;
+  font-size: 1.2rem !important;
+}
+
+/* Search results */
+.VPLocalSearchBox .result-title,
+.VPLocalSearchBox .result-excerpt,
+.VPLocalSearchBox .excerpt {
+  font-family: 'Mehr Nastaliq Web', serif !important;
+}
+
+.audio-player {
+    direction: ltr !important;
+}
+
+/* Mobile Menu Buttons - Larger text for better readability */
+.VPLocalNav .menu,
+.VPLocalNav .menu-text {
+  font-size: 1rem !important;
+  line-height: 1.6 !important;
+}
+
+/* TOC mobile button */
+.VPLocalNav button .menu-text {
+  font-size: 1rem !important;
+}
+
+/* Increase icon size for mobile menu buttons */
+.VPLocalNav .menu-icon,
+.VPLocalNav .icon {
+  width: 24px !important;
+  height: 24px !important;
+}

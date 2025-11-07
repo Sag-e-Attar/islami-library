@@ -1,0 +1,25 @@
+{
+  "name": "islami-library",
+  "version": "1.0.0",
+  "description": "Islami Library - اسلامی لائبریری",
+  "type": "module",
+  "scripts": {
+    "docs:dev": "vitepress dev library",
+    "docs:build": "vitepress build library",
+    "docs:preview": "vitepress preview library"
+  },
+  "devDependencies": {
+    "@iconify-json/carbon": "^1.2.14",
+    "@iconify-json/ph": "^1.2.2",
+    "@unocss/preset-web-fonts": "^66.5.4",
+    "@unocss/reset": "^66.5.4",
+    "@vite-pwa/vitepress": "^1.0.1",
+    "gray-matter": "^4.0.3",
+    "postcss-rtlcss": "^5.7.1",
+    "unocss": "^66.5.4",
+    "vitepress": "2.0.0-alpha.12"
+  },
+  "dependencies": {
+    "@vueuse/core": "^14.0.0"
+  }
+}
