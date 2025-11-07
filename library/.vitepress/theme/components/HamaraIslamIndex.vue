@@ -177,16 +177,16 @@ import { data as chapters } from '../data/hamara-islam-chapters.data'
 
 .chapters-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.5rem;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
   margin-top: 2rem;
 }
 
 .chapter-card {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  padding: 1.5rem;
+  gap: 0.75rem;
+  padding: 1rem;
   background: var(--vp-c-bg-soft);
   border: 1px solid var(--vp-c-divider);
   border-radius: 12px;
@@ -204,8 +204,8 @@ import { data as chapters } from '../data/hamara-islam-chapters.data'
 
 .chapter-number {
   flex-shrink: 0;
-  width: 3rem;
-  height: 3rem;
+  width: 2rem;
+  height: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -213,7 +213,9 @@ import { data as chapters } from '../data/hamara-islam-chapters.data'
   color: white;
   border-radius: 50%;
   font-family: 'Lalezar', sans-serif;
-  font-size: 1.2rem;
+  font-size: 0.9rem;
+  line-height: 1;
+  padding-top: 3px;
 }
 
 .dark .chapter-number {
@@ -226,8 +228,8 @@ import { data as chapters } from '../data/hamara-islam-chapters.data'
 }
 
 .chapter-title {
-  font-size: 1.1rem;
-  line-height: 1.8;
+  font-size: 0.95rem;
+  line-height: 1.6;
   margin: 0;
   color: var(--vp-c-text-1);
   font-weight: normal;
@@ -235,7 +237,7 @@ import { data as chapters } from '../data/hamara-islam-chapters.data'
 
 .chapter-arrow {
   flex-shrink: 0;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: var(--vp-c-text-3);
   transition: transform 0.3s ease;
 }
@@ -303,10 +305,17 @@ import { data as chapters } from '../data/hamara-islam-chapters.data'
   }
 
   .chapters-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
   }
 
   .features-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .chapters-grid {
     grid-template-columns: 1fr;
   }
 }

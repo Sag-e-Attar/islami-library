@@ -2,6 +2,7 @@
 title: ہمارا اسلام
 author: خلیل ملت مفتی خلیل احمد قادری برکاتی
 layout: page
+sidebar: false
 ---
 
 <script setup>

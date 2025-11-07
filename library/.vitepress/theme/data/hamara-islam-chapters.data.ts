@@ -11,14 +11,14 @@ interface Part {
   chapters: Chapter[]
 }
 
-export default createContentLoader('hamara-islam/*.md', {
+export default createContentLoader('hamara-islam/part-*/*.md', {
   includeSrc: false,
   transform(rawData): Part[] {
     const chapters = rawData
       .filter(page => !page.url.endsWith('/hamara-islam/')) // Exclude index.md
       .map(page => {
-        // Extract part and chapter number from filename (e.g., "01-02-islam-ki-taarif" -> part: "01", number: "02")
-        const match = page.url.match(/\/hamara-islam\/(\d+)-(\d+)-/)
+        // Extract part from folder and chapter number from filename (e.g., "/hamara-islam/part-01/02-..." -> part: "01", number: "02")
+        const match = page.url.match(/\/hamara-islam\/part-(\d+)\/(\d+)-/)
         const part = match ? match[1] : '—'
         const number = match ? match[2] : '—'
 
