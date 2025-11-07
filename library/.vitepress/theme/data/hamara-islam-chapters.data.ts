@@ -61,6 +61,14 @@ export default createContentLoader('hamara-islam/part-*/*.md', {
         partTitle = 'ہمارا اسلام ۔ حصہ چہارم'
       } else if (partNumber === '05') {
         partTitle = 'ہمارا اسلام ۔ حصہ پنجم'
+      } else if (partNumber === '06') {
+        partTitle = 'ہمارا اسلام ۔ حصہ ششم'
+      } else if (partNumber === '07') {
+        partTitle = 'ہمارا اسلام ۔ حصہ ہفتم'
+      } else if (partNumber === '08') {
+        partTitle = 'ہمارا اسلام ۔ حصہ ہشتم'
+      } else if (partNumber === '09') {
+        partTitle = 'ہمارا اسلام ۔ حصہ نہم'
       }
       parts.push({
         title: partTitle,

@@ -11,14 +11,14 @@ interface SidebarGroup {
   items: SidebarItem[]
 }
 
-export default createContentLoader('hamara-islam/*.md', {
+export default createContentLoader('hamara-islam/part-*/*.md', {
   includeSrc: false,
   transform(rawData): SidebarGroup[] {
     const chapters = rawData
       .filter(page => !page.url.endsWith('/hamara-islam/')) // Exclude index.md
       .map(page => {
         // Extract part and chapter number from filename
-        const match = page.url.match(/\/hamara-islam\/(\d+)-(\d+)-/)
+        const match = page.url.match(/\/hamara-islam\/part-(\d+)\/(\d+)-/)
         const part = match ? match[1] : '—'
         const number = match ? match[2] : '—'
 
@@ -63,6 +63,16 @@ export default createContentLoader('hamara-islam/*.md', {
         partTitle = 'ہمارا اسلام ۔ حصہ سوم'
       } else if (partNumber === '04') {
         partTitle = 'ہمارا اسلام ۔ حصہ چہارم'
+      } else if (partNumber === '05') {
+        partTitle = 'ہمارا اسلام ۔ حصہ پنجم'
+      } else if (partNumber === '06') {
+        partTitle = 'ہمارا اسلام ۔ حصہ ششم'
+      } else if (partNumber === '07') {
+        partTitle = 'ہمارا اسلام ۔ حصہ ہفتم'
+      } else if (partNumber === '08') {
+        partTitle = 'ہمارا اسلام ۔ حصہ ہشتم'
+      } else if (partNumber === '09') {
+        partTitle = 'ہمارا اسلام ۔ حصہ نہم'
       }
 
       sidebarGroups.push({

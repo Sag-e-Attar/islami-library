@@ -12,15 +12,20 @@ import { data as chapters } from '../data/hamara-islam-chapters.data'
     <div class="book-intro">
       <h2>کتاب کا تعارف</h2>
       <p>
-        <strong>ہمارا اسلام</strong> ایک جامع اسلامی کتاب ہے جو اسلام کے بنیادی عقائد، ارکان اور احکامات کو سوال و جواب کی آسان انداز میں بیان کرتی ہے۔
-        یہ کتاب خاص طور پر عام مسلمانوں کے لیے لکھی گئی ہے تاکہ وہ اپنے دین کے بنیادی مسائل کو آسانی سے سمجھ سکیں۔
+        <strong>ہمارا اسلام</strong> خلیل ملت مفتی خلیل احمد قادری برکاتی رحمۃ اللہ علیہ کی تصنیف ہے جو اسلامی عقائد، عبادات اور احکامات کا ایک جامع و مکمل دائرۃ المعارف ہے۔ یہ کتاب نو (۹) حصوں پر مشتمل ہے اور سوال و جواب کے سہل و آسان انداز میں لکھی گئی ہے۔
+      </p>
+      <p>
+        اس کتاب میں توحید، رسالت، آخرت، فرشتے، آسمانی کتب، انبیاء و اولیاء کرام، ارکانِ اسلام (نماز، روزہ، زکوٰۃ، حج)، طہارت و پاکیزگی، احکامِ شریعت، اور دیگر ضروری مسائل کو تفصیل سے بیان کیا گیا ہے۔ ہر موضوع کو قرآن و حدیث کی روشنی میں واضح کیا گیا ہے۔
+      </p>
+      <p>
+        یہ کتاب خاص طور پر عام مسلمانوں، طلباء و طالبات، اور دین کے بنیادی احکام سیکھنے کے خواہشمند افراد کے لیے نہایت مفید ہے۔
       </p>
     </div>
 
     <div class="chapters-section">
       <h2>ابواب</h2>
       <p class="chapters-intro">
-        یہ کتاب دو حصوں پر مشتمل ہے۔ ہر باب میں ایک خاص موضوع پر تفصیل سے بحث کی گئی ہے۔
+        یہ کتاب نو (۹) حصوں پر مشتمل ہے جن میں اسلامی عقائد، عبادات اور احکامات کو ترتیب وار بیان کیا گیا ہے۔ ہر حصے میں متعدد اسباق ہیں جن میں ایک خاص موضوع پر سوال و جواب کے انداز میں تفصیل سے بحث کی گئی ہے۔
       </p>
 
       <div v-for="part in chapters" :key="part.title" class="part-section">
@@ -47,23 +52,51 @@ import { data as chapters } from '../data/hamara-islam-chapters.data'
       <div class="features-grid">
         <div class="feature">
           <span class="feature-icon">✓</span>
-          <span class="feature-text">سوال و جواب کی آسان انداز</span>
+          <span class="feature-text">سوال و جواب کے سہل و آسان انداز میں</span>
         </div>
         <div class="feature">
           <span class="feature-icon">✓</span>
-          <span class="feature-text">قرآن و حدیث سے دلائل</span>
+          <span class="feature-text">قرآن کریم اور احادیث مبارکہ سے دلائل</span>
         </div>
         <div class="feature">
           <span class="feature-icon">✓</span>
-          <span class="feature-text">عام فہم زبان</span>
+          <span class="feature-text">عام فہم اور سادہ اردو زبان</span>
         </div>
         <div class="feature">
           <span class="feature-icon">✓</span>
-          <span class="feature-text">بنیادی اسلامی عقائد کی تفصیل</span>
+          <span class="feature-text">عقائد، عبادات اور معاملات کی مکمل تفصیل</span>
         </div>
         <div class="feature">
           <span class="feature-icon">✓</span>
-          <span class="feature-text">ہر مسلمان کے لیے ضروری معلومات</span>
+          <span class="feature-text">نماز، روزہ، زکوٰۃ اور حج کے تفصیلی احکام</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">✓</span>
+          <span class="feature-text">طہارت و پاکیزگی کے جامع مسائل</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">✓</span>
+          <span class="feature-text">انبیاء، صحابہ اور اولیاء کرام کا تذکرہ</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">✓</span>
+          <span class="feature-text">حج اور عمرہ کی تفصیلی راہنمائی</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">✓</span>
+          <span class="feature-text">حرمین شریفین کی زیارت کے آداب</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">✓</span>
+          <span class="feature-text">اہلسنت و جماعت کے عقائد کی وضاحت</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">✓</span>
+          <span class="feature-text">فقہ حنفی کے مطابق احکام و مسائل</span>
+        </div>
+        <div class="feature">
+          <span class="feature-icon">✓</span>
+          <span class="feature-text">ہر مسلمان کے لیے ضروری دینی معلومات</span>
         </div>
       </div>
     </div>

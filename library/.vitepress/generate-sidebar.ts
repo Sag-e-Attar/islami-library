@@ -16,44 +16,61 @@ interface SidebarGroup {
 export function generateHamaraIslamSidebar(): SidebarGroup[] {
   const hamaraIslamDir = path.resolve(__dirname, '../hamara-islam')
 
-  // Read all markdown files
-  const files = fs.readdirSync(hamaraIslamDir)
-    .filter(file => file.endsWith('.md') && file !== 'index.md')
-
   // Parse and organize by part
   const partMap = new Map<string, SidebarItem[]>()
 
-  files.forEach(file => {
-    // Extract part and chapter number from filename (e.g., "01-02-islam-ki-taarif.md")
-    const match = file.match(/^(\d+)-(\d+)-(.+)\.md$/)
-    if (!match) return
+  // Read part directories (part-01, part-02, etc.)
+  const partDirs = fs.readdirSync(hamaraIslamDir)
+    .filter(dir => {
+      const fullPath = path.join(hamaraIslamDir, dir)
+      return fs.statSync(fullPath).isDirectory() && dir.startsWith('part-')
+    })
 
-    const [, part, number] = match
-    const slug = file.replace(/\.md$/, '')
+  partDirs.forEach(partDir => {
+    // Extract part number from directory name (e.g., "part-01" -> "01")
+    const partMatch = partDir.match(/^part-(\d+)$/)
+    if (!partMatch) return
 
-    // Read frontmatter to get title
-    const filePath = path.join(hamaraIslamDir, file)
-    const content = fs.readFileSync(filePath, 'utf-8')
-    const { data } = matter(content)
-    const title = data.title || 'بے نام'
+    const part = partMatch[1]
+    const partPath = path.join(hamaraIslamDir, partDir)
 
-    // Create sidebar item (title already includes lesson number)
-    const item: SidebarItem = {
-      text: title,
-      link: `/hamara-islam/${slug}`
-    }
+    // Read all markdown files in this part
+    const files = fs.readdirSync(partPath)
+      .filter(file => file.endsWith('.md'))
 
-    if (!partMap.has(part)) {
-      partMap.set(part, [])
-    }
-    partMap.get(part)!.push(item)
+    files.forEach(file => {
+      // Extract chapter number from filename (e.g., "01-islam-ki-taarif.md")
+      const match = file.match(/^(\d+)-(.+)\.md$/)
+      if (!match) return
+
+      const [, chapterNum] = match
+      const slug = file.replace(/\.md$/, '')
+
+      // Read frontmatter to get title
+      const filePath = path.join(partPath, file)
+      const content = fs.readFileSync(filePath, 'utf-8')
+      const { data } = matter(content)
+      const title = data.title || 'بے نام'
+
+      // Create sidebar item
+      const item: SidebarItem = {
+        text: title,
+        link: `/hamara-islam/${partDir}/${slug}`
+      }
+
+      if (!partMap.has(part)) {
+        partMap.set(part, [])
+      }
+      partMap.get(part)!.push(item)
+    })
   })
 
-  // Sort items within each part
+  // Sort items within each part by chapter number
   partMap.forEach((items) => {
     items.sort((a, b) => {
-      const numA = parseInt(a.text.match(/\d+/)?.[0] || '0')
-      const numB = parseInt(b.text.match(/\d+/)?.[0] || '0')
+      // Extract chapter number from link
+      const numA = parseInt(a.link.match(/\/(\d+)-/)?.[1] || '0')
+      const numB = parseInt(b.link.match(/\/(\d+)-/)?.[1] || '0')
       return numA - numB
     })
   })
@@ -74,6 +91,14 @@ export function generateHamaraIslamSidebar(): SidebarGroup[] {
       partTitle = 'ہمارا اسلام ۔ حصہ چہارم'
     } else if (part === '05') {
       partTitle = 'ہمارا اسلام ۔ حصہ پنجم'
+    } else if (part === '06') {
+      partTitle = 'ہمارا اسلام ۔ حصہ ششم'
+    } else if (part === '07') {
+      partTitle = 'ہمارا اسلام ۔ حصہ ہفتم'
+    } else if (part === '08') {
+      partTitle = 'ہمارا اسلام ۔ حصہ ہشتم'
+    } else if (part === '09') {
+      partTitle = 'ہمارا اسلام ۔ حصہ نہم'
     }
 
     sidebarGroups.push({
