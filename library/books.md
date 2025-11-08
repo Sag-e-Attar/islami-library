@@ -1,10 +1,11 @@
 ---
 layout: page
-title: کتابیں
+title: تمام کتب
+description: اسلامی لائبریری میں موجود تمام کتب کی فہرست
 ---
 
 <script setup>
-import BooksList from './.vitepress/theme/components/BooksList.vue'
+import BooksFlatList from '/.vitepress/theme/components/BooksFlatList.vue'
 </script>
 
-<BooksList />
+<BooksFlatList />

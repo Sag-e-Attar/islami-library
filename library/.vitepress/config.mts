@@ -112,6 +112,10 @@ export default withPwa(
           link: "/books",
         },
         {
+          text: "مصنفین",
+          link: "/authors",
+        },
+        {
           text: "مضامین",
           link: "/articles",
         },

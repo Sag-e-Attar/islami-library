@@ -67,7 +67,7 @@ function getAuthorName(slug: string): string {
     'allama-ahmed-saeed-kazmi': 'علامہ احمد سعید کاظمی',
     'khalil-ahmed-rana': 'خلیل احمد رانا',
     'dr.altaf-hussain-saeedi': 'ڈاکٹر الطاف حسین سعیدی',
-    'allama-arshad-ul-qadri': 'علامہ ارشد القادری'
+    'allama-arshad-ul-qadri': 'علامہ ارشدالقادری'
   }
 
   return authorNames[slug] || slug
