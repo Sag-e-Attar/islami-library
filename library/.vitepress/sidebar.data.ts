@@ -1,3 +1,6 @@
+import fs from 'fs'
+import path from 'path'
+import matter from 'gray-matter'
 import { generateHamaraIslamSidebar } from './generate-sidebar'
 
 export interface SidebarItem {
@@ -11,29 +14,86 @@ export interface SidebarGroup {
   items: SidebarItem[]
 }
 
-// Static sidebar data for authors
-export const authorSidebar: SidebarGroup[] = [
-  {
-    text: "علامہ احمد سعید کاظمی",
-    collapsed: false,
-    items: [
-      {
-        text: "ان النبی کا صحیح معنی و مفہوم",
-        link: "/authors/allama-ahmed-saeed-kazmi/an-nabi-ka-sahi-maani-o-mafhoom"
-      }
-    ]
-  },
-  {
-    text: "خلیل احمد رانا",
-    collapsed: false,
-    items: [
-      {
-        text: "گیارہویں کیا ہے؟",
-        link: "/authors/khalil-ahmed-rana/giyarhveen-kya-hy"
-      }
-    ]
+// Helper function to get author name from slug
+function getAuthorName(slug: string): string {
+  const authorNames: Record<string, string> = {
+    'allama-ahmed-saeed-kazmi': 'علامہ احمد سعید کاظمی',
+    'khalil-ahmed-rana': 'خلیل احمد رانا',
+    'dr.altaf-hussain-saeedi': 'ڈاکٹر الطاف حسین سعیدی',
+    'allama-arshad-ul-qadri': 'علامہ ارشد القادری'
   }
-]
+
+  return authorNames[slug] || slug
+}
+
+// Function to generate authors sidebar automatically
+function generateAuthorsSidebar(): SidebarGroup[] {
+  const authorsDir = path.resolve(__dirname, '../authors')
+
+  // Group books by author
+  const authorMap = new Map<string, SidebarItem[]>()
+
+  // Read all author directories
+  const authorDirs = fs.readdirSync(authorsDir)
+    .filter(dir => {
+      const fullPath = path.join(authorsDir, dir)
+      return fs.statSync(fullPath).isDirectory()
+    })
+
+  authorDirs.forEach(authorSlug => {
+    const authorPath = path.join(authorsDir, authorSlug)
+
+    // Read all markdown files for this author
+    const files = fs.readdirSync(authorPath)
+      .filter(file => file.endsWith('.md'))
+
+    files.forEach(file => {
+      const filePath = path.join(authorPath, file)
+      const content = fs.readFileSync(filePath, 'utf-8')
+      const { data } = matter(content)
+      const title = data.title || 'بے نام'
+      const slug = file.replace(/\.md$/, '')
+
+      const item: SidebarItem = {
+        text: title,
+        link: `/authors/${authorSlug}/${slug}`
+      }
+
+      if (!authorMap.has(authorSlug)) {
+        authorMap.set(authorSlug, [])
+      }
+      authorMap.get(authorSlug)!.push(item)
+    })
+  })
+
+  // Sort items within each author alphabetically
+  authorMap.forEach((items) => {
+    items.sort((a, b) => a.text.localeCompare(b.text))
+  })
+
+  // Create sidebar groups
+  const sidebarGroups: SidebarGroup[] = []
+
+  // Sort author slugs alphabetically by their Urdu names
+  const sortedAuthors = Array.from(authorMap.keys()).sort((a, b) => {
+    return getAuthorName(a).localeCompare(getAuthorName(b))
+  })
+
+  sortedAuthors.forEach(slug => {
+    const items = authorMap.get(slug)!
+    sidebarGroups.push({
+      text: getAuthorName(slug),
+      collapsed: false,
+      items: items
+    })
+  })
+
+  return sidebarGroups
+}
+
+// Dynamically generated sidebar data for authors
+// This automatically scans all books in authors/ directory
+export const authorSidebar = generateAuthorsSidebar()
 
 // Automatically generated sidebar for Hamara Islam
 // This reads all markdown files in hamara-islam/ and generates the sidebar automatically

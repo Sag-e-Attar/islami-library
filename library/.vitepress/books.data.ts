@@ -65,7 +65,9 @@ export default createContentLoader('**/*.md', {
 function getAuthorName(slug: string): string {
   const authorNames: Record<string, string> = {
     'allama-ahmed-saeed-kazmi': 'علامہ احمد سعید کاظمی',
-    'khalil-ahmed-rana': 'خلیل احمد رانا'
+    'khalil-ahmed-rana': 'خلیل احمد رانا',
+    'dr.altaf-hussain-saeedi': 'ڈاکٹر الطاف حسین سعیدی',
+    'allama-arshad-ul-qadri': 'علامہ ارشد القادری'
   }
 
   return authorNames[slug] || slug
