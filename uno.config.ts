@@ -32,6 +32,7 @@ export default defineConfig({
         title: "Lalezar:400",
         arabic: ["Lateef:400,700"],
         urdu: ["Mirza:400,700"],
+        nastaliq: "'Mehr Nastaliq Web':400",
       },
     }),
   ],
@@ -44,6 +45,10 @@ export default defineConfig({
     "rtl-text": "text-right dir-rtl",
     // Add book title colors as shortcut
     "book-title": "text-emerald-500 dark:text-emerald-400",
+    // Urdu text styling with Mehr Nastaliq Web font
+    "urdu-text": "font-nastaliq rtl-text text-lg",
+    "urdu-input": "font-nastaliq rtl-text text-xl w-full px-6 py-4 pl-14 border-2 border-[var(--vp-c-divider)] rounded-xl focus:outline-none focus:border-emerald-500 bg-[var(--vp-c-bg-soft)] text-[var(--vp-c-text-1)] placeholder-[var(--vp-c-text-2)] transition-all duration-200",
+    "urdu-select-dropdown": "font-nastaliq rtl-text text-xl w-full px-6 py-4 border-2 border-[var(--vp-c-divider)] rounded-xl focus:outline-none focus:border-emerald-500 bg-[var(--vp-c-bg-soft)] text-[var(--vp-c-text-1)] cursor-pointer transition-all duration-200 appearance-none pr-12",
   },
   theme: {
     // Extend theme if needed

@@ -1,7 +1,12 @@
 import { defineConfig } from "vitepress";
 import UnoCSS from "unocss/vite";
 import { withPwa } from "@vite-pwa/vitepress";
-import { authorSidebar, articlesSidebar, hamaraIslamSidebar, generateAuthorProfileSidebar } from "./sidebar.data";
+import {
+  authorSidebar,
+  articlesSidebar,
+  hamaraIslamSidebar,
+  generateAuthorProfileSidebar,
+} from "./sidebar.data";
 
 // https://vitepress.dev/reference/site-config
 export default withPwa(
@@ -12,70 +17,65 @@ export default withPwa(
     dir: "rtl",
 
     markdown: {
-      theme: {
-        tip: '💡',
-        warning: '⚠️',
-        danger: '🚨',
-        info: 'ℹ️',
-        details: '📄'
-      },
       container: {
-        tipLabel: 'نکات',
-        warningLabel: 'انتباہ',
-        dangerLabel: 'خطرہ',
-        infoLabel: 'معلومات',
-        detailsLabel: 'تفصیلات'
-      }
+        tipLabel: "نکات",
+        warningLabel: "انتباہ",
+        dangerLabel: "خطرہ",
+        infoLabel: "معلومات",
+        detailsLabel: "تفصیلات",
+      },
     },
 
     vite: {
       plugins: [
         UnoCSS({
-          mode: 'global',
+          mode: "global",
         }),
       ],
       ssr: {
-        noExternal: ['@unocss/reset', 'unocss'],
+        noExternal: ["@unocss/reset", "unocss"],
       },
     },
 
     head: [
-      ['link', { rel: 'icon', type: 'image/svg+xml', href: '/logo.svg' }],
-      ['link', { rel: 'apple-touch-icon', href: '/logo.svg' }],
-      ['meta', { name: 'theme-color', content: '#10b981' }],
+      ["link", { rel: "icon", type: "image/svg+xml", href: "/logo.svg" }],
+      ["link", { rel: "apple-touch-icon", href: "/logo.svg" }],
+      ["meta", { name: "theme-color", content: "#10b981" }],
     ],
 
     pwa: {
-      registerType: 'autoUpdate',
-      includeAssets: ['fonts/**/*.woff', 'logo.svg'],
+      registerType: "autoUpdate",
+      includeAssets: ["fonts/**/*.woff", "logo.svg"],
       manifest: {
-        name: 'اسلامی لائبریری',
-        short_name: 'اسلامی لائبریری',
-        description: 'اسلامی کتب و مضامین کا مجموعہ',
-        theme_color: '#10b981',
-        background_color: '#ffffff',
-        display: 'standalone',
-        orientation: 'portrait',
-        start_url: '/',
-        lang: 'ur',
-        dir: 'rtl',
+        name: "Islami Library",
+        short_name: "Islami Library",
+        description: "اسلامی کتب و مضامین کا مجموعہ",
+        theme_color: "#10b981",
+        background_color: "#ffffff",
+        display: "standalone",
+        orientation: "portrait",
+        start_url: "/",
+        lang: "ur",
+        dir: "rtl",
         icons: [
           {
-            src: '/logo.svg',
-            sizes: 'any',
-            type: 'image/svg+xml',
-            purpose: 'any maskable',
+            src: "/logo.svg",
+            sizes: "any",
+            type: "image/svg+xml",
+            purpose: "any maskable",
           },
         ],
       },
       workbox: {
-        globPatterns: ['**/*.{css,js,html,svg,png,jpg,jpeg,gif,webp,woff,woff2,ttf,eot}'],
+        globPatterns: [
+          "**/*.{css,js,html,svg,png,jpg,jpeg,gif,webp,woff,woff2,ttf,eot}",
+        ],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-            handler: 'CacheFirst',
+            handler: "CacheFirst",
             options: {
-              cacheName: 'google-fonts-cache',
+              cacheName: "google-fonts-cache",
               expiration: {
                 maxEntries: 10,
                 maxAgeSeconds: 60 * 60 * 24 * 365,
@@ -125,7 +125,7 @@ export default withPwa(
       nav: [
         { text: "ہوم", link: "/" },
         {
-          text: "کتابیں",
+          text: "کُتب",
           link: "/books",
         },
         {
@@ -137,7 +137,7 @@ export default withPwa(
           link: "/authors",
         },
         {
-        text: "ہمارا اسلام",
+          text: "ہمارا اسلام",
           link: "/hamara-islam/",
         },
       ],
@@ -175,10 +175,11 @@ export default withPwa(
       notFound: {
         code: "404",
         title: "صفحہ نہیں ملا",
-        quote: "لیکن اگر آپ اپنی سمت نہیں بدلتے، اور اگر آپ تلاش جاری رکھتے ہیں، تو آپ وہیں پہنچ سکتے ہیں جہاں آپ جا رہے ہیں۔",
+        quote:
+          "لیکن اگر آپ اپنی سمت نہیں بدلتے، اور اگر آپ تلاش جاری رکھتے ہیں، تو آپ وہیں پہنچ سکتے ہیں جہاں آپ جا رہے ہیں۔",
         link: "/",
         linkText: "ہوم پیج پر جائیں",
-        linkLabel: "ہوم پیج پر جائیں"
+        linkLabel: "ہوم پیج پر جائیں",
       },
     },
   })

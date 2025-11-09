@@ -1,5 +1,6 @@
 <script setup lang="ts">
   import { ref, computed, onMounted, watch } from "vue"
+  // @ts-ignore - VitePress data loader type issue
   import { data as books } from "../../books-flat.data"
   import type { FlatBook } from "../../books-flat.data"
 
@@ -24,27 +25,37 @@
 
   // Extract unique authors and categories for filters
   const authors = computed(() => {
-    const uniqueAuthors = Array.from(new Set(books.map(book => book.author)))
-    return uniqueAuthors.sort((a, b) => a.localeCompare(b, "ur"))
+    const uniqueAuthors = Array.from(
+      new Set(books.map((book: FlatBook) => book.author))
+    ) as string[]
+    return uniqueAuthors.sort((a: string, b: string) =>
+      a.localeCompare(b, "ur")
+    )
   })
 
   // Extract unique authors from filtered results
   const filteredAuthors = computed(() => {
     const uniqueAuthors = Array.from(
-      new Set(filteredBooks.value.map(book => book.author))
+      new Set(filteredBooks.value.map((book: FlatBook) => book.author))
+    ) as string[]
+    return uniqueAuthors.sort((a: string, b: string) =>
+      a.localeCompare(b, "ur")
     )
-    return uniqueAuthors.sort((a, b) => a.localeCompare(b, "ur"))
   })
 
   const categories = computed(() => {
-    const allCategories = books.flatMap(book => book.categories || [])
-    const uniqueCategories = Array.from(new Set(allCategories))
-    return uniqueCategories.sort((a, b) => a.localeCompare(b, "ur"))
+    const allCategories = books.flatMap(
+      (book: FlatBook) => book.categories || []
+    ) as string[]
+    const uniqueCategories = Array.from(new Set(allCategories)) as string[]
+    return uniqueCategories.sort((a: string, b: string) =>
+      a.localeCompare(b, "ur")
+    )
   })
 
   // Filter books based on search and filters
   const filteredBooks = computed(() => {
-    return books.filter(book => {
+    return books.filter((book: FlatBook) => {
       const matchesSearch =
         !searchQuery.value ||
         book.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
@@ -84,7 +95,7 @@
     <h1
       class="font-title text-3rem font-bold text-center mb-12 leading-tight bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-500 bg-clip-text text-transparent"
     >
-      کتابیں
+      کُتب
     </h1>
 
     <!-- Stats and View Toggle -->
@@ -92,10 +103,9 @@
       class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8"
     >
       <div
-        class="text-lg font-normal text-[var(--vp-c-text-1)] rtl-text"
-        style="font-family: &quot;Mehr Nastaliq Web&quot;, serif"
+        class="urdu-stats text-lg font-normal text-[var(--vp-c-text-1)] rtl-text"
       >
-        کل {{ filteredBooks.length }} کتابیں — {{ filteredAuthors.length }}
+        کل {{ filteredBooks.length }} کُتب — {{ filteredAuthors.length }}
         {{ filteredAuthors.length === 1 ? "مصنف" : "مصنفین" }}
       </div>
       <div class="flex gap-2">
@@ -138,12 +148,7 @@
           v-model="searchQuery"
           type="text"
           placeholder="کتاب یا مصنف تلاش کریں.."
-          class="w-full px-6 py-4 pl-14 text-lg border-2 border-[var(--vp-c-divider)] rounded-xl focus:outline-none focus:border-emerald-500 bg-[var(--vp-c-bg-soft)] text-[var(--vp-c-text-1)] placeholder-[var(--vp-c-text-2)] transition-all duration-200 rtl-text"
-          style="
-            font-family: &quot;Mehr Nastaliq Web&quot;, serif;
-            font-size: 1.25rem;
-            text-align: right;
-          "
+          class="urdu-input w-full px-6 py-4 pl-14 text-lg border-2 border-[var(--vp-c-divider)] rounded-xl focus:outline-none focus:border-emerald-500 bg-[var(--vp-c-bg-soft)] text-[var(--vp-c-text-1)] placeholder-[var(--vp-c-text-2)] transition-all duration-200 rtl-text"
         />
         <span
           class="absolute left-4 top-4.5 text-[var(--vp-c-text-2)] text-xl i-carbon-search"
@@ -155,17 +160,7 @@
         <div class="flex-1">
           <select
             v-model="selectedAuthor"
-            class="w-full px-6 py-4 text-lg border-2 border-[var(--vp-c-divider)] rounded-xl focus:outline-none focus:border-emerald-500 bg-[var(--vp-c-bg-soft)] text-[var(--vp-c-text-1)] cursor-pointer transition-all duration-200 rtl-text appearance-none"
-            style="
-              font-family: &quot;Mehr Nastaliq Web&quot;, serif;
-              font-size: 1.25rem;
-              text-align: right;
-              background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=&quot;http://www.w3.org/2000/svg&quot; fill=&quot;none&quot; viewBox=&quot;0 0 20 20&quot;%3e%3cpath stroke=&quot;%236b7280&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;1.5&quot; d=&quot;m6 8 4 4 4-4&quot;/%3e%3c/svg%3e');
-              background-position: right 1rem center;
-              background-repeat: no-repeat;
-              background-size: 1.5em 1.5em;
-              padding-right: 3rem;
-            "
+            class="urdu-select w-full px-6 py-4 text-lg border-2 border-[var(--vp-c-divider)] rounded-xl focus:outline-none focus:border-emerald-500 bg-[var(--vp-c-bg-soft)] text-[var(--vp-c-text-1)] cursor-pointer transition-all duration-200 rtl-text appearance-none"
           >
             <option value="all">تمام مصنفین</option>
             <option v-for="author in authors" :key="author" :value="author">
@@ -176,17 +171,7 @@
         <div class="flex-1">
           <select
             v-model="selectedCategory"
-            class="w-full px-6 py-4 text-lg border-2 border-[var(--vp-c-divider)] rounded-xl focus:outline-none focus:border-emerald-500 bg-[var(--vp-c-bg-soft)] text-[var(--vp-c-text-1)] cursor-pointer transition-all duration-200 rtl-text appearance-none"
-            style="
-              font-family: &quot;Mehr Nastaliq Web&quot;, serif;
-              font-size: 1.25rem;
-              text-align: right;
-              background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns=&quot;http://www.w3.org/2000/svg&quot; fill=&quot;none&quot; viewBox=&quot;0 0 20 20&quot;%3e%3cpath stroke=&quot;%236b7280&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot; stroke-width=&quot;1.5&quot; d=&quot;m6 8 4 4 4-4&quot;/%3e%3c/svg%3e');
-              background-position: right 1rem center;
-              background-repeat: no-repeat;
-              background-size: 1.5em 1.5em;
-              padding-right: 3rem;
-            "
+            class="urdu-select w-full px-6 py-4 text-lg border-2 border-[var(--vp-c-divider)] rounded-xl focus:outline-none focus:border-emerald-500 bg-[var(--vp-c-bg-soft)] text-[var(--vp-c-text-1)] cursor-pointer transition-all duration-200 rtl-text appearance-none"
           >
             <option value="all">تمام زمرے</option>
             <option
@@ -280,14 +265,9 @@
                   کتاب کا نام
                 </th>
                 <th
-                  class="px-6 py-4 text-right text-[var(--vp-c-text-1)] font-semibold rtl-text border-r border-[var(--vp-c-divider)]"
+                  class="px-6 py-4 text-right text-[var(--vp-c-text-1)] font-semibold rtl-text"
                 >
                   مصنف
-                </th>
-                <th
-                  class="px-6 py-4 text-right text-[var(--vp-c-text-1)] font-semibold rtl-text border-r border-[var(--vp-c-divider)]"
-                >
-                  زمرہ
                 </th>
               </tr>
             </thead>
@@ -317,21 +297,8 @@
                     </span>
                   </div>
                 </td>
-                <td
-                  class="px-6 py-4 text-[var(--vp-c-text-2)] rtl-text border-r border-[var(--vp-c-divider)]"
-                >
+                <td class="px-6 py-4 text-[var(--vp-c-text-2)] rtl-text">
                   {{ book.author }}
-                </td>
-                <td class="px-6 py-4 border-r border-[var(--vp-c-divider)]">
-                  <div class="flex flex-wrap gap-1">
-                    <span
-                      v-for="category in book.categories"
-                      :key="category"
-                      class="px-2 py-1 text-xs bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 rounded-full"
-                    >
-                      {{ category }}
-                    </span>
-                  </div>
                 </td>
               </tr>
             </tbody>
@@ -407,4 +374,30 @@ td:last-child {
   /* tr:last-child td {
   border-bottom: none !important;
 } */
+
+  /* Urdu font styling */
+  .urdu-stats {
+    font-family: "Mehr Nastaliq Web", serif;
+    text-align: left;
+    direction: rtl;
+  }
+
+  .urdu-input {
+    font-family: "Mehr Nastaliq Web", serif;
+    font-size: 1.25rem;
+    text-align: left;
+    direction: rtl;
+  }
+
+  .urdu-select {
+    font-family: "Mehr Nastaliq Web", serif;
+    font-size: 1.25rem;
+    text-align: left;
+    direction: rtl;
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"%3e%3cpath stroke="%236b7280" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m6 8 4 4 4-4"/%3e%3c/svg%3e');
+    background-position: right 1rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 3rem;
+  }
 </style>

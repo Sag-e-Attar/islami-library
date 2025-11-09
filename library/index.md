@@ -11,44 +11,51 @@ hero:
     alt: اسلامی لائبریری
   actions:
     - theme: brand
-      text: مصنفین اور کتابیں
+      text: کُتب دیکھیں
       link: /books
     - theme: alt
-      text: مضامین
+      text: مضامین پڑھیں
       link: /articles
 
 features:
+  - icon: <div class="i-carbon-notebook" />
+    title: "اسلامی کتب"
+    details: "عقائد، فقہ، حدیث، سیرت، عبادات اور معاملات پر مشتمل وسیع کتب کا مجموعہ، نامور  علماء اور مصنفین کی قلم سے۔"
+    link: /books
+    linkText: تمام کتب دیکھیں
   - icon: <div class="i-carbon-user-multiple" />
-    title: مصنفین کا ذخیرہ
-    details: مختلف اسلامی علماء اور مصنفین کی کتابوں کا وسیع ذخیرہ ایک جگہ دستیاب
+    title: "مشہور مصنفین"
+    details: "علامہ سید احمد سعید کاظمی، علامہ عبدالحکیم شرف قادری، مفتی فیض احمد اویسی, ڈاکٹر الطاف حسین سعیدی، خلیل احمد رانا اور دیگر نامور علماء"
+    link: /authors
+    linkText: مصنفین دیکھیں
   - icon: <div class="i-carbon-document" />
-    title: تعلیمی مضامین
-    details: اسلامی تعلیمات، اخلاقیات اور معاشرتی موضوعات پر مفید مضامین
+    title: "تعلیمی مضامین"
+    details: "عقائد، توحید، آخرت، فرشتے اور دیگر اسلامی تعلیمات پر مبنی مفید مضامین"
+    link: /articles
+    linkText: مضامین پڑھیں
+  - icon: <div class="i-carbon-book" />
+    title: "ہمارا اسلام"
+    details: "خلیل ملت مفتی خلیل احمد قادری برکاتی کی جامع اسلامی دائرۃ المعارف: عقائد، نماز، روزہ، زکوٰۃ، حج اور دیگر احکامِ شریعت کا مکمل مجموعہ"
+    link: /hamara-islam/
+    linkText: مطالعہ کریں
   - icon: <div class="i-carbon-search" />
-    title: آسان تلاش
-    details: کتب، مصنفین اور مضامین کی فوری تلاش کے لیے طاقتور سرچ
+    title: "طاقتور تلاش"
+    details: "کتابوں، مصنفین اور مضامین میں آسان اور تیز تلاش کی سہولت"
   - icon: <div class="i-carbon-asleep" />
-    title: آرام دہ مطالعہ
-    details: مہر نستعلیق فونٹ اور ڈارک موڈ کے ساتھ بہترین مطالعہ کا تجربہ
-  - icon: <div class="i-carbon-logo-github" />
-    title: GitHub پر تعاون کریں
-    details: اس پروجیکٹ میں حصہ ڈالیں اور اسے بہتر بنانے میں مدد کریں
-    link: https://github.com
-    linkText: GitHub دیکھیں
-  - icon: <div class="i-carbon-request-quote" />
-    title: غلطی کی اطلاع دیں
-    details: کسی حوالے یا مواد میں غلطی ہو تو Pull Request بھیجیں
-    link: https://github.com
-    linkText: PR بھیجیں
-  - icon: <div class="i-carbon-launch" />
-    title: اسلامی تعلیم
-    details: مزید اسلامی تعلیمی مواد کے لیے اسلامی ایجوکیشن ڈاٹ کام ملاحظہ کریں
-    link: https://islamieducation.com
-    linkText: ویب سائٹ کھولیں
-  - icon: <div class="i-carbon-chat" />
-    title: اسلامی محفل
-    details: اسلامی فورم اور مباحثے کے لیے اسلامی محفل ڈاٹ کام سے جڑیں
-    link: https://islamimehfil.com
-    linkText: فورم دیکھیں
+    title: "آرام دہ مطالعہ"
+    details: "مہر نستعلیق فونٹ اور ڈارک موڈ کے ساتھ بہترین مطالعہ کا تجربہ"
+  - icon: <div class="i-carbon-mobile" />
+    title: "موبائل دوستانہ"
+    details: "موبائل فونز اور ٹیبلیٹس پر مکمل طور پر کام کرتا ہے"
+  - icon: <div class="i-carbon-download" />
+    title: "آفلائن مطالعہ"
+    details: "PWA سپورٹ کے ساتھ مواد کو ڈاؤن لوڈ کرکے آفلائن بھی پڑھ سکتے ہیں"
 ---
+
+
+<style>
+  .VPHome {
+    padding-bottom: 0;
+  }
+</style>
 
