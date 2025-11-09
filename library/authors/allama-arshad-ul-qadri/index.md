@@ -1,19 +1,11 @@
 ---
-name: علامہ ارشدالقادری
-slug: allama-arshad-ul-qadri
-bio: عالم دین، مفتی، اور مصنف
-era: 20ویں صدی
-specialization: [فقہ, عقائد, سیرت]
+layout: page
+title: علامہ ارشد القادری
+authorSlug: allama-arshad-ul-qadri
 ---
 
-# علامہ ارشدالقادری رحمہ اللہ
+<script setup>
+import AuthorBooksList from '../../.vitepress/theme/components/AuthorBooksList.vue'
+</script>
 
-علامہ ارشدالقادری ایک جلیل القدر عالم دین اور مصنف تھے۔ آپ نے اسلامی علوم میں قابل ذکر خدمات انجام دیں اور آپ کی تعلیمی خدمات آج بھی یاد کی جاتی ہیں۔
-
-## تعلیمی و علمی خدمات
-
-آپ نے فقہ حنفی اور عقائد پر گہریcommand掌握 حاصل کی اور اسے عام لوگوں تک پہنچایا۔ آپ کے دروس اور خطبات سے ہزاروں افراد مستفید ہوئے۔
-
-## تصانیف
-
-آپ نے دینی علوم پر متعدد کتابیں تصنیف کیں جو علما اور عام مسلمانوں کے لیے ایک زریعۂ تعلیم کا کام کرتی ہیں۔
+<AuthorBooksList :authorSlug="'allama-arshad-ul-qadri'" />

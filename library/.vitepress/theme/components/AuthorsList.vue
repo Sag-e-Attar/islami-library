@@ -41,9 +41,9 @@
               </svg>
             </div>
             <div class="flex-1 flex flex-col gap-2">
-              <h2 class="text-1.5rem font-bold mb-3 text-[var(--vp-c-text-1)]">
+              <a :href="`/authors/${item.author.slug}/`" class="text-1.5rem font-bold mb-3 text-[var(--vp-c-text-1)] hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors no-underline">
                 {{ item.author.name }}
-              </h2>
+              </a>
               <span
                 class="inline-flex items-center gap-1.2 px-3.2 py-1.2 bg-gradient-to-br from-emerald-500 to-teal-500 text-white rounded-full text-0.8rem font-semibold self-start"
               >

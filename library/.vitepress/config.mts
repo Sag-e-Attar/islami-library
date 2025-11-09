@@ -1,7 +1,7 @@
 import { defineConfig } from "vitepress";
 import UnoCSS from "unocss/vite";
 import { withPwa } from "@vite-pwa/vitepress";
-import { authorSidebar, hamaraIslamSidebar } from "./sidebar.data";
+import { authorSidebar, articlesSidebar, hamaraIslamSidebar, generateAuthorProfileSidebar } from "./sidebar.data";
 
 // https://vitepress.dev/reference/site-config
 export default withPwa(
@@ -129,12 +129,12 @@ export default withPwa(
           link: "/books",
         },
         {
-          text: "مصنفین",
-          link: "/authors",
-        },
-        {
           text: "مضامین",
           link: "/articles",
+        },
+        {
+          text: "مصنفین",
+          link: "/authors",
         },
         {
         text: "ہمارا اسلام",
@@ -144,6 +144,7 @@ export default withPwa(
 
       sidebar: {
         "/authors/": authorSidebar,
+        "/articles/": articlesSidebar,
         "/hamara-islam/": hamaraIslamSidebar,
       },
 

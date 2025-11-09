@@ -1,11 +1,11 @@
 ---
 layout: page
-title: خلیل احمد رانا
-authorSlug: khalil-ahmed-rana
+title: مفتی اکمل قادری
+authorSlug: mufti-akmal-qadri
 ---
 
 <script setup>
 import AuthorBooksList from '../../.vitepress/theme/components/AuthorBooksList.vue'
 </script>
 
-<AuthorBooksList :authorSlug="'khalil-ahmed-rana'" />
+<AuthorBooksList :authorSlug="'mufti-akmal-qadri'" />

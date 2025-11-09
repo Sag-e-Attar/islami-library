@@ -20,6 +20,52 @@ function getAuthorName(slug: string): string {
   return authorsData[slug]?.name || slug
 }
 
+// Function to generate author profile sidebar
+function generateAuthorProfileSidebar(authorSlug: string): SidebarGroup[] {
+  const authorsDir = path.resolve(__dirname, '../authors')
+  const authorPath = path.join(authorsDir, authorSlug)
+
+  try {
+    // Read the author's index file
+    const indexPath = path.join(authorPath, 'index.md')
+    if (!fs.existsSync(indexPath)) {
+      return []
+    }
+
+    const content = fs.readFileSync(indexPath, 'utf-8')
+    const { data } = matter(content)
+    const authorName = getAuthorName(authorSlug)
+
+    // Read all book files for this author
+    const files = fs.readdirSync(authorPath)
+      .filter(file => file.endsWith('.md') && file !== 'index.md')
+
+    const bookItems: SidebarItem[] = files.map(file => {
+      const bookPath = path.join(authorPath, file)
+      const bookContent = fs.readFileSync(bookPath, 'utf-8')
+      const bookData = matter(bookContent)
+      const title = bookData.data.title || 'بے نام'
+      const slug = file.replace(/\.md$/, '')
+
+      return {
+        text: title,
+        link: `/authors/${authorSlug}/${slug}`
+      }
+    }).sort((a, b) => a.text.localeCompare(b.text, 'ur'))
+
+    return [
+      {
+        text: authorName,
+        collapsed: false,
+        items: bookItems
+      }
+    ]
+  } catch (error) {
+    console.warn(`Could not generate sidebar for author ${authorSlug}:`, error)
+    return []
+  }
+}
+
 // Function to generate authors sidebar automatically
 function generateAuthorsSidebar(): SidebarGroup[] {
   const authorsDir = path.resolve(__dirname, '../authors')
@@ -37,9 +83,9 @@ function generateAuthorsSidebar(): SidebarGroup[] {
   authorDirs.forEach(authorSlug => {
     const authorPath = path.join(authorsDir, authorSlug)
 
-    // Read all markdown files for this author
+    // Read all markdown files for this author (excluding index.md)
     const files = fs.readdirSync(authorPath)
-      .filter(file => file.endsWith('.md'))
+      .filter(file => file.endsWith('.md') && file !== 'index.md')
 
     files.forEach(file => {
       const filePath = path.join(authorPath, file)
@@ -88,6 +134,59 @@ function generateAuthorsSidebar(): SidebarGroup[] {
 // Dynamically generated sidebar data for authors
 // This automatically scans all books in authors/ directory
 export const authorSidebar = generateAuthorsSidebar()
+
+// Function to generate author profile sidebar
+// This generates sidebar for individual author profile pages
+export { generateAuthorProfileSidebar }
+
+// Function to generate articles sidebar automatically
+function generateArticlesSidebar() {
+  const articlesDir = path.resolve(__dirname, '../articles')
+  const articles = []
+
+  try {
+    // Read all markdown files in articles directory
+    const files = fs.readdirSync(articlesDir)
+      .filter(file => file.endsWith('.md') && file !== 'index.md')
+
+    files.forEach(file => {
+      const filePath = path.join(articlesDir, file)
+      const content = fs.readFileSync(filePath, 'utf-8')
+      const { data } = matter(content)
+
+      // Get file stats for creation/modification date
+      const stats = fs.statSync(filePath)
+      const fileDate = stats.mtime // Use modification time
+
+      const title = data.title || 'بے نام'
+      const slug = file.replace(/\.md$/, '')
+
+      articles.push({
+        text: title,
+        link: `/articles/${slug}`,
+        fileDate: fileDate
+      })
+    })
+
+    // Sort by file creation date (newest first)
+    articles.sort((a, b) => b.fileDate.getTime() - a.fileDate.getTime())
+
+  } catch (error) {
+    console.warn('Could not read articles directory:', error)
+  }
+
+  return [
+    {
+      text: "حالیہ مضامین",
+      collapsed: false,
+      items: articles
+    }
+  ]
+}
+
+// Dynamically generated sidebar data for articles
+// This automatically scans all articles in articles/ directory
+export const articlesSidebar = generateArticlesSidebar()
 
 // Automatically generated sidebar for Hamara Islam
 // This reads all markdown files in hamara-islam/ and generates the sidebar automatically

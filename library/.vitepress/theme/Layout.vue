@@ -1,10 +1,30 @@
 <script setup>
   import DefaultTheme from "vitepress/theme"
   import { useData } from "vitepress"
-  import { onMounted, onBeforeUnmount } from "vue"
+  import { onMounted, onBeforeUnmount, computed } from "vue"
 
   const { Layout } = DefaultTheme
   const { frontmatter } = useData()
+  const { page } = useData()
+
+  // Check if current page is an article page
+  const isArticlePage = computed(() => {
+    const url = page.value?.relativePath || ''
+    return url.startsWith('articles/')
+  })
+
+  // Function to get author slug from current URL
+  const getAuthorSlugFromUrl = () => {
+    const url = page.value?.relativePath || ''
+    const pathParts = url.split('/')
+
+    // Handle /authors/[author]/[book].md or /authors/[author]/index.md
+    if (pathParts.length >= 2 && pathParts[0] === 'authors') {
+      return pathParts[1]
+    }
+
+    return ''
+  }
 
   // Auto-scroll active TOC item into view
   let observer = null
@@ -77,7 +97,17 @@
         v-if="frontmatter.author"
         class="font-bold bg-emerald-600 dark:bg-emerald-500 text-white inline-block px-2 py-2 rounded-md"
       >
-        مصنف: {{ frontmatter.author }}
+        <span v-if="!isArticlePage">
+          <a
+            :href="`/authors/${getAuthorSlugFromUrl()}/`"
+            class="text-white hover:text-emerald-200 dark:hover:text-emerald-300 transition-colors no-underline"
+          >
+            مصنف: {{ frontmatter.author }}
+          </a>
+        </span>
+        <span v-else>
+          مصنف: {{ frontmatter.author }}
+        </span>
       </div>
     </template>
 

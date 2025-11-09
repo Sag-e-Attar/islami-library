@@ -46,6 +46,18 @@
     "slug": "mufti-akmal-qadri",
     "bio": "عالم دین، مفتی، اور مصنف",
     "specialization": ["فقہ", "عقائد", "سیرت"]
+  }
+  ,"mufti-faiz-ahmed-owaisi": {
+    "name": "مفتی فیض احمد اویسی",
+    "slug": "mufti-faiz-ahmed-owaisi",
+    "bio": "عالم دین، مفتی، اور مصنف",
+    "specialization": ["فقہ", "عقائد", "سیرت"]
+  },
+  "maulana-shah-turab-ul-haq-qadri": {
+    "name": "مولانا شاہ تراب الحق قادری",
+    "slug": "maulana-shah-turab-ul-haq-qadri",
+    "bio": "عالم دین، اور مصنف",
+    "specialization": ["فقہ", "عقائد", "سیرت"]
   },
   "muhammad-danish-ahmed-qadri": {
     "name": "محمد دانش احمد اخترالقادری",
