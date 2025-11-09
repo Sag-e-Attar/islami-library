@@ -11,6 +11,23 @@ export default withPwa(
     lang: "ur",
     dir: "rtl",
 
+    markdown: {
+      theme: {
+        tip: '💡',
+        warning: '⚠️',
+        danger: '🚨',
+        info: 'ℹ️',
+        details: '📄'
+      },
+      container: {
+        tipLabel: 'نکات',
+        warningLabel: 'انتباہ',
+        dangerLabel: 'خطرہ',
+        infoLabel: 'معلومات',
+        detailsLabel: 'تفصیلات'
+      }
+    },
+
     vite: {
       plugins: [
         UnoCSS({
@@ -151,6 +168,16 @@ export default withPwa(
 
       lastUpdated: {
         text: "آخری اپ ڈیٹ",
+      },
+
+      // 404 page configuration
+      notFound: {
+        code: "404",
+        title: "صفحہ نہیں ملا",
+        quote: "لیکن اگر آپ اپنی سمت نہیں بدلتے، اور اگر آپ تلاش جاری رکھتے ہیں، تو آپ وہیں پہنچ سکتے ہیں جہاں آپ جا رہے ہیں۔",
+        link: "/",
+        linkText: "ہوم پیج پر جائیں",
+        linkLabel: "ہوم پیج پر جائیں"
       },
     },
   })

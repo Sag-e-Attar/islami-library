@@ -1,4 +1,5 @@
 import { createContentLoader } from 'vitepress'
+import authorsData from '../authors/authors.json'
 
 export interface Book {
   title: string
@@ -63,12 +64,5 @@ export default createContentLoader('**/*.md', {
 })
 
 function getAuthorName(slug: string): string {
-  const authorNames: Record<string, string> = {
-    'allama-ahmed-saeed-kazmi': 'علامہ احمد سعید کاظمی',
-    'khalil-ahmed-rana': 'خلیل احمد رانا',
-    'dr.altaf-hussain-saeedi': 'ڈاکٹر الطاف حسین سعیدی',
-    'allama-arshad-ul-qadri': 'علامہ ارشدالقادری'
-  }
-
-  return authorNames[slug] || slug
+  return authorsData[slug]?.name || slug
 }

@@ -429,3 +429,116 @@ html {
   color: var(--vp-c-bg);
 }
 
+/* Import Lateef font for Arabic text */
+@import url('https://fonts.googleapis.com/css2?family=Lateef&display=swap');
+
+/* Custom styles for the info notification block */
+.custom-block.info .custom-block-title,
+.custom-block.tip .custom-block-title,
+.custom-block.warning .custom-block-title,
+.custom-block.danger .custom-block-title,
+.custom-block.details .custom-block-title {
+  display: none;
+}
+
+.custom-block.info {
+  font-size: 0.8rem;
+}
+
+/* Custom styling for tip block */
+:root {
+  --vp-custom-block-tip-text: #1e40af; /* Blue-800 */
+}
+
+:root.dark {
+  --vp-custom-block-tip-text: #60a5fa; /* Blue-400 */
+}
+
+.custom-block.tip {
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  font-size: 1rem; /* Normal content font size */
+  line-height: 2.2 !important; /* Match .vp-doc p line-height */
+}
+
+.custom-block.tip p {
+  color: var(--vp-custom-block-tip-text);
+  margin: 0;
+  line-height: 2.2 !important; /* Override VitePress .vp-doc .custom-block p */
+}
+
+.custom-block.tip .custom-block-title {
+  display: none; /* Already hidden, but keeping for completeness */
+}
+
+.custom-block.info p { /* Added to specifically target paragraphs inside */
+  line-height: 1.5;
+}
+
+/* 404 Page - Larger fonts for Urdu readability */
+.NotFound {
+  font-family: 'Mehr Nastaliq Web', serif !important;
+}
+
+.NotFound .code {
+  font-family: 'Lalezar', 'Mehr Nastaliq Web', system-ui, sans-serif !important;
+  font-size: 80px !important;
+  line-height: 80px !important;
+  font-weight: 600 !important;
+}
+
+.NotFound .title {
+  font-family: 'Lalezar', 'Mehr Nastaliq Web', system-ui, sans-serif !important;
+  font-size: 36px !important;
+  line-height: 40px !important;
+  letter-spacing: 2px !important;
+  font-weight: 700 !important;
+}
+
+.NotFound .divider {
+  margin: 32px auto 24px !important;
+  width: 64px !important;
+  height: 1px !important;
+}
+
+.NotFound .quote {
+  font-size: 22px !important;
+  line-height: 1.8 !important;
+  max-width: 512px !important;
+  margin: 0 auto !important;
+  font-weight: 500 !important;
+}
+
+.NotFound .action {
+  padding-top: 32px !important;
+}
+
+.NotFound .link {
+  font-size: 20px !important;
+  padding: 8px 24px 16px !important;
+  border-radius: 16px !important;
+  font-weight: 500 !important;
+}
+
+/* Markdown tables - larger font size for Urdu readability */
+.vp-doc table {
+  font-size: 0.9rem !important;
+  line-height: 1.8 !important;
+}
+
+.vp-doc table th,
+.vp-doc table td {
+  font-size: 0.9rem !important;
+  line-height: 1.8 !important;
+  padding: 12px 16px !important;
+}
+
+.vp-doc table th {
+  font-weight: bold !important;
+  font-family: 'Mehr Nastaliq Web', serif !important;
+}
+
+.vp-doc table td {
+  font-family: 'Mehr Nastaliq Web', serif !important;
+}

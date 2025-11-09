@@ -2,6 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { generateHamaraIslamSidebar } from './generate-sidebar'
+import authorsData from '../authors/authors.json'
 
 export interface SidebarItem {
   text: string
@@ -14,16 +15,9 @@ export interface SidebarGroup {
   items: SidebarItem[]
 }
 
-// Helper function to get author name from slug
+// Helper function to get author name from slug using JSON data
 function getAuthorName(slug: string): string {
-  const authorNames: Record<string, string> = {
-    'allama-ahmed-saeed-kazmi': 'علامہ احمد سعید کاظمی',
-    'khalil-ahmed-rana': 'خلیل احمد رانا',
-    'dr.altaf-hussain-saeedi': 'ڈاکٹر الطاف حسین سعیدی',
-    'allama-arshad-ul-qadri': 'علامہ ارشد القادری'
-  }
-
-  return authorNames[slug] || slug
+  return authorsData[slug]?.name || slug
 }
 
 // Function to generate authors sidebar automatically
@@ -83,7 +77,7 @@ function generateAuthorsSidebar(): SidebarGroup[] {
     const items = authorMap.get(slug)!
     sidebarGroups.push({
       text: getAuthorName(slug),
-      collapsed: false,
+      collapsed: true, // Collapsed by default
       items: items
     })
   })

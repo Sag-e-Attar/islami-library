@@ -63,3 +63,5 @@ lerna-debug.log*
 # UnoCSS
 .uno.css
 uno.css
+
+pending/

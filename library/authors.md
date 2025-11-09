@@ -4,7 +4,7 @@ title: مصنفین
 ---
 
 <script setup>
-import BooksList from './.vitepress/theme/components/BooksList.vue'
+import AuthorsList from './.vitepress/theme/components/AuthorsList.vue'
 </script>
 
-<BooksList />
+<AuthorsList />

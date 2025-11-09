@@ -1,0 +1,56 @@
+{
+  "allama-ahmed-saeed-kazmi": {
+    "name": "علامہ سید احمد سعید کاظمی",
+    "slug": "allama-ahmed-saeed-kazmi",
+    "bio": "محدث حنفی، صاحب تصانیف کثیرہ، مفتی اعظم پاکستان",
+    "specialization": ["حدیث", "فقہ", "عقائد"]
+  },
+  "dr.altaf-hussain-saeedi": {
+    "name": "ڈاکٹر الطاف حسین سعیدی",
+    "slug": "dr.altaf-hussain-saeedi",
+    "bio": "اسلامی محقق، مصنف، اور اسکالر",
+
+    "specialization": ["تاریخ", "سیرت", "تحقیق"]
+  },
+  "khalil-ahmed-rana": {
+    "name": "خلیل احمد رانا",
+    "slug": "khalil-ahmed-rana",
+    "specialization": ["تاریخ", "سیرت", "تعلیم"]
+  },
+  "allama-arshad-ul-qadri": {
+    "name": "علامہ ارشدالقادری",
+    "slug": "allama-arshad-ul-qadri",
+    "bio": "عالم دین، مفتی، اور مصنف",
+    "specialization": ["فقہ", "عقائد", "سیرت"]
+  },
+  "imam-jalal-ud-din-sayoti": {
+    "name": "امام جلال الدین ا لسیو طی رحمۃ اللہ علیہ",
+    "slug": "imam-jalal-ud-din-sayoti",
+    "bio": "عالم دین، مفتی، اور مصنف",
+    "specialization": ["فقہ", "عقائد", "سیرت"]
+  },
+  "allama-abdul-hakeem-sharaf-qadri": {
+    "name": "علامہ عبدالحکیم شرف قادری",
+    "slug": "allama-abdul-hakeem-sharaf-qadri",
+    "bio": "عالم دین، مفتی، اور مصنف",
+    "specialization": ["فقہ", "عقائد", "سیرت"]
+  },
+  "allama-qamr-ud-din-sialwi": {
+    "name": "علامہ قمر الدین سیالوی",
+    "slug": "allama-qamr-ud-din-sialwi",
+    "bio": "عالم دین، مفتی، اور مصنف",
+    "specialization": ["فقہ", "عقائد", "سیرت"]
+  },
+  "mufti-akmal-qadri": {
+    "name": "مفتی اکمل قادری",
+    "slug": "mufti-akmal-qadri",
+    "bio": "عالم دین، مفتی، اور مصنف",
+    "specialization": ["فقہ", "عقائد", "سیرت"]
+  },
+  "muhammad-danish-ahmed-qadri": {
+    "name": "محمد دانش احمد اخترالقادری",
+    "slug": "muhammad-danish-ahmed-qadri",
+    "bio": "",
+    "specialization": []
+  }
+}

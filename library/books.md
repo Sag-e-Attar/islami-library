@@ -5,7 +5,7 @@ description: اسلامی لائبریری میں موجود تمام کتب ک�
 ---
 
 <script setup>
-import BooksFlatList from '/.vitepress/theme/components/BooksFlatList.vue'
+import BookList from '/.vitepress/theme/components/BookList.vue'
 </script>
 
-<BooksFlatList />
+<BookList />
