@@ -11,7 +11,7 @@ import {
 // https://vitepress.dev/reference/site-config
 export default withPwa(
   defineConfig({
-    base: "/islami-library/",
+    base: "/",
     title: "اسلامی لائبریری",
     description: "اسلامی کتب و مضامین کا مجموعہ",
     lang: "ur",
