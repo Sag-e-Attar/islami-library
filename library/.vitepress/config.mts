@@ -11,6 +11,7 @@ import {
 // https://vitepress.dev/reference/site-config
 export default withPwa(
   defineConfig({
+    base: "/islami-library/",
     title: "اسلامی لائبریری",
     description: "اسلامی کتب و مضامین کا مجموعہ",
     lang: "ur",
@@ -38,8 +39,8 @@ export default withPwa(
     },
 
     head: [
-      ["link", { rel: "icon", type: "image/svg+xml", href: "/logo.svg" }],
-      ["link", { rel: "apple-touch-icon", href: "/logo.svg" }],
+      ["link", { rel: "icon", type: "image/svg+xml", href: "/islami-library/logo.svg" }],
+      ["link", { rel: "apple-touch-icon", href: "/islami-library/logo.svg" }],
       ["meta", { name: "theme-color", content: "#10b981" }],
     ],
 
@@ -54,12 +55,12 @@ export default withPwa(
         background_color: "#ffffff",
         display: "standalone",
         orientation: "portrait",
-        start_url: "/",
+        start_url: "/islami-library/",
         lang: "ur",
         dir: "rtl",
         icons: [
           {
-            src: "/logo.svg",
+            src: "/islami-library/logo.svg",
             sizes: "any",
             type: "image/svg+xml",
             purpose: "any maskable",
@@ -67,6 +68,7 @@ export default withPwa(
         ],
       },
       workbox: {
+        maximumFileSizeToCacheInBytes: 10 * 1024 * 1024, // 10MB
         globPatterns: [
           "**/*.{css,js,html,svg,png,jpg,jpeg,gif,webp,woff,woff2,ttf,eot}",
         ],
@@ -163,8 +165,13 @@ export default withPwa(
       },
 
       socialLinks: [
-        { icon: "github", link: "https://github.com/vuejs/vitepress" },
+        { icon: "github", link: "https://github.com/Sag-e-Attar/islami-library" },
       ],
+
+      editLink: {
+        pattern: "https://github.com/Sag-e-Attar/islami-library/edit/master/library/:path",
+        text: "اس صفحہ میں ترمیم کریں"
+      },
 
       // RTL specific configs
       outline: {

@@ -32,7 +32,7 @@ export default defineConfig({
         title: "Lalezar:400",
         arabic: ["Lateef:400,700"],
         urdu: ["Mirza:400,700"],
-        nastaliq: "'Mehr Nastaliq Web':400",
+        // Remove nastaliq as it's loaded locally
       },
     }),
   ],

@@ -20,6 +20,7 @@
     "vitepress": "2.0.0-alpha.12"
   },
   "dependencies": {
+    "@miletorix/vitepress-back-to-top-button": "^1.0.1",
     "@vueuse/core": "^14.0.0"
   }
 }

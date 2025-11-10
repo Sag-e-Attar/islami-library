@@ -56,7 +56,7 @@ library/
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/islami-library.git
+git clone https://github.com/Sag-e-Attar/islami-library.git
 cd islami-library
 
 # Install dependencies
@@ -203,7 +203,7 @@ author: علامہ احمد سعید کاظمی
 
 #### 3. 🐛 Report Issues
 
-Found a typo or incorrect content? Please [open an issue](https://github.com/yourusername/islami-library/issues) with:
+Found a typo or incorrect content? Please [open an issue](https://github.com/Sag-e-Attar/islami-library/issues) with:
 - Clear description of the problem
 - Location (file path and line number if possible)
 - Suggested correction
@@ -275,7 +275,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Website:** [islamieducation.com](https://islamieducation.com)
 - **Forum:** [islamimehfil.com](https://islamimehfil.com)
-- **Issues:** [GitHub Issues](https://github.com/yourusername/islami-library/issues)
+- **Issues:** [GitHub Issues](https://github.com/Sag-e-Attar/islami-library/issues)
 
 ---
 

@@ -1,3 +1,6 @@
+/* Import Lateef font for Arabic text */
+@import url('https://fonts.googleapis.com/css2?family=Lateef&display=swap');
+
 /* Mehr Nastaliq Font */
 @font-face {
   font-family: 'Mehr Nastaliq Web';
@@ -429,9 +432,6 @@ html {
   color: var(--vp-c-bg);
 }
 
-/* Import Lateef font for Arabic text */
-@import url('https://fonts.googleapis.com/css2?family=Lateef&display=swap');
-
 /* Custom styles for the info notification block */
 .custom-block.info .custom-block-title,
 .custom-block.tip .custom-block-title,
@@ -541,4 +541,10 @@ html {
 
 .vp-doc table td {
   font-family: 'Mehr Nastaliq Web', serif !important;
+}
+
+/* Back to top button progress text styling */
+span.progress-text {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+  font-size: 0.6rem !important;
 }
