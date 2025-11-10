@@ -5,6 +5,8 @@ export interface Book {
   title: string
   url: string
   author: string
+  category?: string
+  categories?: string[]
 }
 
 export interface Author {
@@ -39,7 +41,9 @@ export default createContentLoader('**/*.md', {
       const book: Book = {
         title,
         url: page.url,
-        author: authorName
+        author: authorName,
+        category: page.frontmatter?.category,
+        categories: page.frontmatter?.categories || []
       }
 
       if (!authorMap.has(authorSlug)) {

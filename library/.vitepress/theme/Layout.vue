@@ -109,6 +109,30 @@
           مصنف: {{ frontmatter.author }}
         </span>
       </div>
+
+      <!-- Categories for book pages -->
+      <div
+        v-if="frontmatter.categories && frontmatter.categories.length > 0"
+        class="flex flex-wrap gap-2 mt-3"
+      >
+        <span
+          v-for="category in frontmatter.categories"
+          :key="category"
+          class="category-badge"
+        >
+          {{ category }}
+        </span>
+      </div>
+
+      <!-- Primary category if exists -->
+      <div
+        v-if="frontmatter.category && !frontmatter.categories?.includes(frontmatter.category)"
+        class="mt-3"
+      >
+        <span class="category-badge">
+          {{ frontmatter.category }}
+        </span>
+      </div>
     </template>
 
     <!-- Custom Footer -->
@@ -134,5 +158,38 @@
     color: #555;
     margin-bottom: 1em;
     padding-top: 1em;
+  }
+
+  /* Category badge styling with better dark mode support */
+  .category-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    border-radius: 0.375rem;
+    border: 1px solid;
+    background-color: rgba(107, 114, 128, 0.08);
+    color: rgb(75, 85, 99);
+    border-color: rgba(107, 114, 128, 0.15);
+    transition: all 0.2s ease-in-out;
+  }
+
+  /* Dark mode overrides */
+  html.dark .category-badge {
+    background-color: rgba(156, 163, 175, 0.08);
+    color: rgb(156, 163, 175);
+    border-color: rgba(156, 163, 175, 0.15);
+  }
+
+  /* Hover effects */
+  .category-badge:hover {
+    background-color: rgba(107, 114, 128, 0.12);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  }
+
+  html.dark .category-badge:hover {
+    background-color: rgba(156, 163, 175, 0.12);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 </style>

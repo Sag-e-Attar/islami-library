@@ -26,8 +26,14 @@
       const matchesSearch =
         !searchQuery.value ||
         article.title.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
-        (article.description && article.description.toLowerCase().includes(searchQuery.value.toLowerCase())) ||
-        (article.author && article.author.toLowerCase().includes(searchQuery.value.toLowerCase()))
+        (article.description &&
+          article.description
+            .toLowerCase()
+            .includes(searchQuery.value.toLowerCase())) ||
+        (article.author &&
+          article.author
+            .toLowerCase()
+            .includes(searchQuery.value.toLowerCase()))
 
       return matchesSearch
     })
@@ -39,8 +45,7 @@
       localStorage.setItem("articles-view-mode", newMode)
     }
   })
-
-  </script>
+</script>
 
 <template>
   <div class="max-w-1100px mx-auto px-8 mt-10 mb-16">
@@ -58,7 +63,8 @@
         class="text-lg font-normal text-[var(--vp-c-text-1)] rtl-text"
         style="font-family: &quot;Mehr Nastaliq Web&quot;, serif"
       >
-        کل {{ filteredArticles.length }} {{ filteredArticles.length === 1 ? "مضمون" : "مضامین" }}
+        کل {{ filteredArticles.length }}
+        {{ filteredArticles.length === 1 ? "مضمون" : "مضامین" }}
       </div>
       <div class="flex gap-2">
         <button
@@ -133,15 +139,21 @@
           </div>
           <div class="flex-1">
             <h3
-              class="text-xl font-semibold text-[var(--vp-c-text-1)] mb-[6px] leading-relaxed"
+              class="text-xl font-semibold text-[var(--vp-c-text-1)] mb-3 leading-relaxed"
             >
               {{ article.title }}
             </h3>
-            <div v-if="article.author" class="text-sm text-[var(--vp-c-text-2)] flex items-center gap-2 mb-3">
+            <div
+              v-if="article.author"
+              class="text-sm text-[var(--vp-c-text-2)] flex items-center gap-2 mb-3"
+            >
               <span class="i-carbon-user text-base"></span>
               <span>{{ article.author }}</span>
             </div>
-            <p v-if="article.description" class="text-[var(--vp-c-text-2)] text-xs leading-relaxed mb-3">
+            <p
+              v-if="article.description"
+              class="text-[var(--vp-c-text-2)] text-xs leading-relaxed mb-3"
+            >
               {{ article.description }}
             </p>
           </div>
@@ -187,16 +199,19 @@
                 <td class="px-6 py-4 border-r border-[var(--vp-c-divider)]">
                   <div
                     class="font-semibold rtl-text text-left text-lg text-[var(--vp-c-text-1)]"
-                    style="font-size: 1rem;"
+                    style="font-size: 1rem"
                   >
                     {{ article.title }}
                   </div>
                 </td>
                 <td
                   class="px-6 py-4 text-[var(--vp-c-text-2)] text-left border-r border-[var(--vp-c-divider)]"
-                  style="font-size: 0.9rem;"
+                  style="font-size: 0.9rem"
                 >
-                  <div v-if="article.description" class="leading-relaxed text-xs">
+                  <div
+                    v-if="article.description"
+                    class="leading-relaxed text-xs"
+                  >
                     {{ article.description }}
                   </div>
                   <div v-else class="text-[var(--vp-c-text-3)] text-xs">
@@ -210,7 +225,10 @@
                     <span class="i-carbon-user text-base"></span>
                     <span>{{ article.author }}</span>
                   </div>
-                  <div v-else class="text-[var(--vp-c-text-3)] flex items-center gap-2">
+                  <div
+                    v-else
+                    class="text-[var(--vp-c-text-3)] flex items-center gap-2"
+                  >
                     <span class="i-carbon-user text-base"></span>
                     <span>مصنف نہیں موجود</span>
                   </div>

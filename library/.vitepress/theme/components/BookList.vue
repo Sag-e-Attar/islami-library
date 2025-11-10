@@ -4,6 +4,23 @@
   import { data as books } from "../../books-flat.data"
   import type { FlatBook } from "../../books-flat.data"
 
+  // Props to control what to show
+  interface Props {
+    showFilters?: boolean
+    showTitle?: boolean
+    showStats?: boolean
+    showViewToggle?: boolean
+    showCategories?: boolean
+  }
+
+  const props = withDefaults(defineProps<Props>(), {
+    showFilters: true,
+    showTitle: true,
+    showStats: true,
+    showViewToggle: true,
+    showCategories: true
+  })
+
   const navigateToBook = (url: string) => {
     window.location.href = url
   }
@@ -43,6 +60,19 @@
     )
   })
 
+  // Check if any filters are active
+  const hasActiveFilters = computed(() => {
+    return searchQuery.value !== '' || selectedAuthor.value !== 'all' || selectedCategory.value !== 'all'
+  })
+
+  // Reset all filters
+  const resetFilters = () => {
+    searchQuery.value = ''
+    selectedAuthor.value = 'all'
+    selectedCategory.value = 'all'
+  }
+
+  
   const categories = computed(() => {
     const allCategories = books.flatMap(
       (book: FlatBook) => book.categories || []
@@ -93,6 +123,7 @@
 <template>
   <div class="max-w-1100px mx-auto px-8 mt-10 mb-16">
     <h1
+      v-if="showTitle"
       class="font-title text-3rem font-bold text-center mb-12 leading-tight bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-500 bg-clip-text text-transparent"
     >
       کُتب
@@ -100,15 +131,17 @@
 
     <!-- Stats and View Toggle -->
     <div
+      v-if="showStats || showViewToggle"
       class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8"
     >
       <div
+        v-if="showStats"
         class="urdu-stats text-lg font-normal text-[var(--vp-c-text-1)] rtl-text"
       >
         کل {{ filteredBooks.length }} کُتب — {{ filteredAuthors.length }}
         {{ filteredAuthors.length === 1 ? "مصنف" : "مصنفین" }}
       </div>
-      <div class="flex gap-2">
+      <div v-if="showViewToggle" class="flex gap-2">
         <button
           @click="viewMode = 'grid'"
           :class="[
@@ -141,7 +174,7 @@
     </div>
 
     <!-- Search and Filters -->
-    <div class="mb-8 space-y-6">
+    <div v-if="showFilters" class="mb-8 space-y-6">
       <!-- Search -->
       <div class="relative">
         <input
@@ -183,6 +216,38 @@
             </option>
           </select>
         </div>
+        <div class="flex items-end">
+          <button
+            @click="resetFilters"
+            :disabled="searchQuery === '' && selectedAuthor === 'all' && selectedCategory === 'all'"
+            class="px-6 py-4 text-lg border-2 border-[var(--vp-c-divider)] rounded-xl focus:outline-none focus:border-red-500 bg-[var(--vp-c-bg-soft)] text-[var(--vp-c-text-1)] cursor-pointer transition-all duration-200 rtl-text disabled:opacity-50 disabled:cursor-not-allowed hover:border-red-500 hover:text-red-600 dark:hover:text-red-400"
+          >
+            فلٹر صاف کریں
+          </button>
+        </div>
+      </div>
+
+      <!-- Active Filters Display -->
+      <div v-if="hasActiveFilters" class="flex flex-wrap gap-2 items-center">
+        <span class="text-sm text-[var(--vp-c-text-2)]">فعال فلٹرز:</span>
+
+        <!-- Search filter badge -->
+        <span v-if="searchQuery" class="active-filter-badge search-filter">
+          تلاش: "{{ searchQuery }}"
+          <button @click="searchQuery = ''" class="ml-2">×</button>
+        </span>
+
+        <!-- Author filter badge -->
+        <span v-if="selectedAuthor !== 'all'" class="active-filter-badge author-filter">
+          مصنف: {{ selectedAuthor }}
+          <button @click="selectedAuthor = 'all'" class="ml-2">×</button>
+        </span>
+
+        <!-- Category filter badge -->
+        <span v-if="selectedCategory !== 'all'" class="active-filter-badge category-filter">
+          زمرہ: {{ selectedCategory }}
+          <button @click="selectedCategory = 'all'" class="ml-2">×</button>
+        </span>
       </div>
     </div>
 
@@ -191,61 +256,71 @@
       v-if="viewMode === 'grid'"
       class="grid grid-cols-1 md:grid-cols-2 gap-6"
     >
-      <a
+      <div
         v-for="book in filteredBooks"
         :key="book.url"
-        :href="book.url"
-        class="group p-6 bg-[var(--vp-c-bg-soft)] border border-[var(--vp-c-divider)] rounded-2xl transition-all duration-300 hover:border-emerald-500 hover:shadow-lg hover:shadow-emerald-500/10 block"
+        class="p-6 bg-[var(--vp-c-bg-soft)] border border-[var(--vp-c-divider)] rounded-2xl transition-all duration-300 hover:border-emerald-500 hover:shadow-lg hover:shadow-emerald-500/10"
       >
-        <div class="flex items-start gap-4">
-          <div
-            class="p-2 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex-shrink-0 mt-3"
-          >
-            <span class="i-carbon-book text-xl text-white"></span>
-          </div>
-          <div class="flex-1">
-            <h3
-              class="text-xl font-semibold text-[var(--vp-c-text-1)] mb-[6px] leading-relaxed"
+        <a
+          :href="book.url"
+          class="block"
+        >
+          <div class="flex items-start gap-4">
+            <div
+              class="p-2 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex-shrink-0 mt-3"
             >
-              {{ book.title }}
-            </h3>
-            <div class="flex items-center gap-2 text-[var(--vp-c-text-2)]">
-              <span class="i-carbon-user text-base"></span>
-              <span>{{ book.author }}</span>
+              <span class="i-carbon-book text-xl text-white"></span>
+            </div>
+            <div class="flex-1">
+              <h3
+                class="text-xl font-semibold text-[var(--vp-c-text-1)] mb-[6px] leading-relaxed"
+              >
+                {{ book.title }}
+              </h3>
+              <div class="flex items-center gap-2 text-[var(--vp-c-text-2)]">
+                <span class="i-carbon-user text-base"></span>
+                <span>{{ book.author }}</span>
+              </div>
             </div>
           </div>
-        </div>
 
-        <div
-          v-if="book.categories && book.categories.length > 0"
-          class="flex flex-wrap gap-2 mb-3 mt-4"
-        >
-          <span
-            v-for="category in book.categories"
-            :key="category"
-            class="px-3 py-1 text-sm bg-emerald-50 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 rounded-full"
+          <div
+            v-if="book.tags && book.tags.length > 0"
+            class="flex flex-wrap gap-2 mt-4"
           >
-            {{ category }}
-          </span>
-        </div>
+            <span
+              v-for="tag in book.tags"
+              :key="tag"
+              class="px-3 py-1 text-sm bg-[var(--vp-c-bg)] text-[var(--vp-c-text-2)] rounded-lg border border-[var(--vp-c-divider)]"
+            >
+              #{{ tag }}
+            </span>
+          </div>
 
+          <div v-if="book.date" class="mt-3 text-sm text-[var(--vp-c-text-2)]">
+            {{ formatDate(book.date) }}
+          </div>
+        </a>
+
+        <!-- Categories outside the link -->
         <div
-          v-if="book.tags && book.tags.length > 0"
+          v-if="showCategories && book.categories && book.categories.length > 0"
           class="flex flex-wrap gap-2 mt-4"
         >
-          <span
-            v-for="tag in book.tags"
-            :key="tag"
-            class="px-3 py-1 text-sm bg-[var(--vp-c-bg)] text-[var(--vp-c-text-2)] rounded-lg border border-[var(--vp-c-divider)]"
+          <button
+            v-for="category in book.categories"
+            :key="category"
+            @click="showFilters && (selectedCategory = category)"
+            :class="[
+              'book-category-badge',
+              showFilters && selectedCategory === category ? 'active' : '',
+              showFilters ? 'clickable' : 'static'
+            ]"
           >
-            #{{ tag }}
-          </span>
+            {{ category }}
+          </button>
         </div>
-
-        <div v-if="book.date" class="mt-3 text-sm text-[var(--vp-c-text-2)]">
-          {{ formatDate(book.date) }}
-        </div>
-      </a>
+      </div>
     </div>
 
     <!-- List View -->
@@ -399,5 +474,179 @@ td:last-child {
     background-repeat: no-repeat;
     background-size: 1.5em 1.5em;
     padding-right: 3rem;
+  }
+
+  /* Active filter badge styling */
+  .active-filter-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border-radius: 9999px;
+    border: 1px solid;
+    transition: all 0.2s ease-in-out;
+  }
+
+  .active-filter-badge button {
+    background: none;
+    border: none;
+    padding: 0;
+    margin-left: 0.5rem;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 50%;
+    width: 1.25rem;
+    height: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+  }
+
+  /* Search filter badge */
+  .search-filter {
+    background-color: rgba(59, 130, 246, 0.1);
+    color: rgb(37, 99, 235);
+    border-color: rgba(59, 130, 246, 0.2);
+  }
+
+  .search-filter button {
+    color: rgb(37, 99, 235);
+  }
+
+  .search-filter button:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: rgb(239, 68, 68);
+  }
+
+  /* Author filter badge */
+  .author-filter {
+    background-color: rgba(34, 197, 94, 0.1);
+    color: rgb(22, 163, 74);
+    border-color: rgba(34, 197, 94, 0.2);
+  }
+
+  .author-filter button {
+    color: rgb(22, 163, 74);
+  }
+
+  .author-filter button:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: rgb(239, 68, 68);
+  }
+
+  /* Category filter badge */
+  .category-filter {
+    background-color: rgba(168, 85, 247, 0.1);
+    color: rgb(147, 51, 234);
+    border-color: rgba(168, 85, 247, 0.2);
+  }
+
+  .category-filter button {
+    color: rgb(147, 51, 234);
+  }
+
+  .category-filter button:hover {
+    background-color: rgba(239, 68, 68, 0.1);
+    color: rgb(239, 68, 68);
+  }
+
+  /* Dark mode overrides for active filter badges */
+  html.dark .search-filter {
+    background-color: rgba(59, 130, 246, 0.15);
+    color: rgb(147, 197, 253);
+    border-color: rgba(59, 130, 246, 0.3);
+  }
+
+  html.dark .search-filter button {
+    color: rgb(147, 197, 253);
+  }
+
+  html.dark .author-filter {
+    background-color: rgba(34, 197, 94, 0.15);
+    color: rgb(134, 239, 172);
+    border-color: rgba(34, 197, 94, 0.3);
+  }
+
+  html.dark .author-filter button {
+    color: rgb(134, 239, 172);
+  }
+
+  html.dark .category-filter {
+    background-color: rgba(168, 85, 247, 0.15);
+    color: rgb(196, 181, 253);
+    border-color: rgba(168, 85, 247, 0.3);
+  }
+
+  html.dark .category-filter button {
+    color: rgb(196, 181, 253);
+  }
+
+  /* Hover effects for active filter badges */
+  .active-filter-badge:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  html.dark .active-filter-badge:hover {
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Book category badges styling */
+  .book-category-badge {
+    display: inline-block;
+    padding: 0.25rem 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 400;
+    border-radius: 9999px;
+    border: 1px solid;
+    background-color: rgba(107, 114, 128, 0.08);
+    color: rgb(75, 85, 99);
+    border-color: rgba(107, 114, 128, 0.15);
+    transition: all 0.2s ease-in-out;
+    cursor: default;
+  }
+
+  /* Dark mode for book category badges */
+  html.dark .book-category-badge {
+    background-color: rgba(156, 163, 175, 0.08);
+    color: rgb(156, 163, 175);
+    border-color: rgba(156, 163, 175, 0.15);
+  }
+
+  /* Clickable state for book category badges */
+  .book-category-badge.clickable {
+    cursor: pointer;
+  }
+
+  .book-category-badge.clickable:hover {
+    background-color: rgba(107, 114, 128, 0.12);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08);
+  }
+
+  html.dark .book-category-badge.clickable:hover {
+    background-color: rgba(156, 163, 175, 0.12);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+
+  /* Active state for book category badges */
+  .book-category-badge.active {
+    background-color: rgba(16, 185, 129, 0.15);
+    color: rgb(5, 150, 105);
+    border-color: rgba(16, 185, 129, 0.25);
+    box-shadow: 0 1px 3px rgba(16, 185, 129, 0.15);
+  }
+
+  .book-category-badge.active:hover {
+    background-color: rgba(16, 185, 129, 0.2);
+    border-color: rgba(16, 185, 129, 0.3);
+  }
+
+  /* Static state (non-clickable) */
+  .book-category-badge.static {
+    cursor: default;
   }
 </style>
