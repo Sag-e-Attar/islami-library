@@ -5,54 +5,63 @@
 
 > A comprehensive digital library of Islamic books and articles in Urdu | اسلامی کتب و مضامین کا جامع ڈیجیٹل ذخیرہ
 
-🌐 **Live Site:** [library.islamieducation.com](https://library.islamieducation.com) *(coming soon)*
+🌐 **Live Site:** [library.islamieducation.com](https://library.islamieducation.com)
 
 ## 📚 About | تعارف
 
 Islami Library is an open-source digital library dedicated to preserving and sharing Islamic knowledge in Urdu. The platform hosts books from renowned Islamic scholars and educational articles on various Islamic topics.
 
 **Key Features:**
-- 📖 Curated collection of Islamic books from authentic scholars
-- ✍️ Educational articles on Islamic teachings and ethics
-- 🔍 Powerful search functionality in Urdu
-- 🌙 Dark mode for comfortable reading
-- 📱 Responsive design - works on all devices
-- ⚡ Fast and lightweight - built with modern web technologies
+- 📖 **47+ Islamic books** from renowned Sunni scholars
+- ✍️ **20+ educational articles** on Islamic topics
+- 👥 **13+ authors** including Allama Ahmed Saeed Kazmi, Allama Arshad-ul-Qadri, and more
+- 🔍 **Advanced search** with frontmatter title indexing
+- 🏷️ **Category filtering** and author-wise organization
+- 🌙 **Dark mode** with beautiful Urdu typography
+- 📱 **Fully responsive** design for all devices
+- 🔄 **PWA support** - install as a mobile app
+- ⚡ **Ultra-fast** with optimized build system
+- 📜 **Back-to-top** navigation for long books
+- 🎨 **Custom theme** with RTL support
 
 ## 🚀 Tech Stack
 
-- **[VitePress](https://vitepress.dev/)** - Static site generator
+- **[VitePress 2.0](https://vitepress.dev/)** - Modern static site generator
 - **[Vue 3](https://vuejs.org/)** - Progressive JavaScript framework
-- **[UnoCSS](https://unocss.dev/)** - Atomic CSS engine
-- **TypeScript** - Type-safe development
-- **Mehr Nastaliq Web** - Beautiful Urdu typography
+- **[UnoCSS](https://unocss.dev/)** - Instant atomic CSS engine
+- **[TypeScript](https://www.typescriptlang.org/)** - Type-safe development
+- **[PWA](https://vite-pwa-org.netlify.app/)** - Progressive Web App support
+- **[PostCSS RTL](https://github.com/MohammadYounes/rtlcss)** - RTL CSS transformation
+- **Mehr Nastaliq Web** - Premium Urdu typography
+- **[Carbon Icons](https://carbon.designsystem.design/)** & **[Phosphor Icons](https://phosphoricons.com/)** - Icon libraries
 
-## 🏗️ Project Structure
+## 📂 Content Structure | مواد کی ڈھانچہ
 
 ```
 library/
-├── index.md              # Homepage
-├── books.md              # Books listing page
-├── articles.md           # Articles listing page
-├── authors/              # Books organized by author
+├── index.md                    # Homepage | ہوم پیج
+├── books.md                    # Books listing | کتب کی فہرست
+├── articles.md                 # Articles listing | مضامین کی فہرست
+├── authors/                    # Books by author | مصنفین کے مطابق کتب
 │   ├── allama-ahmed-saeed-kazmi/
-│   └── khalil-ahmed-rana/
-├── articles/             # Islamic articles and essays
-└── .vitepress/           # VitePress configuration
-    ├── config.mts        # Main configuration
-    ├── books.data.ts     # Books data loader
-    ├── articles.data.ts  # Articles data loader
-    └── theme/            # Custom theme
+│   │   ├── book-name.md        # Individual books | الگ الگ کتب
+│   │   └── index.md            # Author profile | مصنف کا پروفائل
+│   ├── allama-arshad-ul-qadri/
+│   └── [other-authors]/        # More authors | دوسرے مصنفین
+├── articles/                   # Islamic articles | اسلامی مضامین
+│   ├── article-name.md         # Individual articles | الگ الگ مضامین
+│   └── [more-articles].md      # More articles | مزید مضامین
+└── fonts/                      # Urdu fonts | اردو فونٹس
 ```
 
 ## 🛠️ Development
 
 ### Prerequisites
 
-- Node.js 18+
-- pnpm (recommended) or npm
+- **Node.js 18+**
+- **pnpm** (recommended) or npm/yarn
 
-### Installation
+### Quick Start
 
 ```bash
 # Clone the repository
@@ -64,15 +73,26 @@ pnpm install
 
 # Start development server
 pnpm docs:dev
-
-# Build for production
-pnpm docs:build
-
-# Preview production build
-pnpm docs:preview
 ```
 
-The site will be available at `http://localhost:5173`
+Visit `http://localhost:5173` to see the site in action.
+
+### Development Commands
+
+```bash
+pnpm docs:dev          # Start development server with hot reload
+pnpm docs:build        # Build for production (optimized)
+pnpm docs:preview      # Preview production build locally
+pnpm store prune        # Clean pnpm cache (if needed)
+```
+
+### Build Features
+
+- **⚡ Ultra-fast builds** - Development in ~2s, Production in ~30s
+- **🔄 Auto-reloading** - Changes reflect immediately
+- **📱 PWA ready** - Service worker and manifest generated
+- **🔍 SEO optimized** - Meta tags and structured data
+- **📦 Optimized assets** - Automatic minification and compression
 
 ## ✏️ Recommended Editor for Urdu Content
 
@@ -122,12 +142,25 @@ We welcome contributions from everyone! Whether you're fixing a typo, adding a n
    ---
    title: کتاب کا عنوان
    author: مصنف کا نام
+   categories:
+     - اعمال
+     - اورادووظائف
    ---
    ```
-4. If adding a new author, update the author mapping in:
-   - `library/.vitepress/books.data.ts`
-   - `library/.vitepress/config.mts` (in `generateSidebar()` function)
+4. **If adding a new author**, the system will automatically:
+   - ✅ Detect the new author from the file path
+   - ✅ Generate author profile page
+   - ✅ Update sidebar navigation
+   - ✅ Add to books listing
+   - ✅ Include in search results
+
 5. Create a pull request with a clear description
+
+**🎉 Automated Features:**
+- **No manual configuration needed** - the system automatically handles new authors and books
+- **Instant search integration** - new books appear in search immediately
+- **Automatic sidebar generation** - navigation updates automatically
+- **Category system** - optional tags for better organization
 
 **Markdown Formatting Conventions:**
 
@@ -194,8 +227,8 @@ author: علامہ احمد سعید کاظمی
    ```yaml
    ---
    title: مضمون کا عنوان
+   author: مصنف کا نام
    description: مختصر تعارف (اختیاری)
-   date: 2024-01-15
    ---
    ```
 3. Write your content in Urdu
