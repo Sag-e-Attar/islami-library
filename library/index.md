@@ -20,7 +20,7 @@ hero:
 features:
   - icon: <div class="i-carbon-notebook" />
     title: "اسلامی کتب"
-    details: "عقائد، فقہ، حدیث، سیرت، عبادات اور معاملات پر مشتمل وسیع کتب کا مجموعہ، نامور  علماء اور مصنفین کی قلم سے۔"
+    details: "عقائد، فقہ، حدیث، سیرت، عبادات اور معاملات پر مشتمل وسیع کتب کا مجموعہ، نامور علماء اور مصنفین کی قلم سے"
     link: /books
     linkText: تمام کتب دیکھیں
   - icon: <div class="i-carbon-user-multiple" />
@@ -52,10 +52,8 @@ features:
     details: "PWA سپورٹ کے ساتھ مواد کو ڈاؤن لوڈ کرکے آفلائن بھی پڑھ سکتے ہیں"
 ---
 
-
 <style>
   .VPHome {
     padding-bottom: 0;
   }
 </style>
-

@@ -2,10 +2,16 @@
   import DefaultTheme from "vitepress/theme"
   import { useData } from "vitepress"
   import { onMounted, onBeforeUnmount, computed } from "vue"
-
+  
   const { Layout } = DefaultTheme
   const { frontmatter } = useData()
   const { page } = useData()
+
+  // Check if current page is the homepage
+  const isHomePage = computed(() => {
+    const url = page.value?.relativePath || ''
+    return url === 'index.md' || url === ''
+  })
 
   // Check if current page is an article page
   const isArticlePage = computed(() => {
@@ -84,7 +90,74 @@
 </script>
 
 <template>
-  <Layout>
+  <ClientOnly v-if="isHomePage">
+    <Layout>
+    <!-- Check if the author frontmatter exists and render the custom div -->
+    <template #doc-before>
+      <h1
+        :id="frontmatter.title"
+        class="text-2xl md:text-3xl lg:text-4xl font-title text-amber-500 dark:text-amber-400 mb-3"
+      >
+        {{ frontmatter.title }}
+      </h1>
+      <div
+        v-if="frontmatter.author"
+        class="font-bold bg-emerald-600 dark:bg-emerald-500 text-white inline-block px-2 py-2 rounded-md"
+      >
+        <span v-if="!isArticlePage">
+          <a
+            :href="`/authors/${getAuthorSlugFromUrl()}/`"
+            class="text-white hover:text-emerald-200 dark:hover:text-emerald-300 transition-colors no-underline"
+          >
+            مصنف: {{ frontmatter.author }}
+          </a>
+        </span>
+        <span v-else>
+          مصنف: {{ frontmatter.author }}
+        </span>
+      </div>
+
+      <!-- Categories for book pages -->
+      <div
+        v-if="frontmatter.categories && frontmatter.categories.length > 0"
+        class="flex flex-wrap gap-2 mt-3"
+      >
+        <span
+          v-for="category in frontmatter.categories"
+          :key="category"
+          class="category-badge"
+        >
+          {{ category }}
+        </span>
+      </div>
+
+      <!-- Primary category if exists -->
+      <div
+        v-if="frontmatter.category && !frontmatter.categories?.includes(frontmatter.category)"
+        class="mt-3"
+      >
+        <span class="category-badge">
+          {{ frontmatter.category }}
+        </span>
+      </div>
+    </template>
+
+    <!-- Custom Footer -->
+    <template #layout-bottom>
+      <footer class="custom-footer">
+        <div class="footer-content">
+          <p class="footer-text">
+            تمام تحریری مواد متعلقہ مصنفین کی ملکیت ہے
+          </p>
+          <p class="footer-copyright">
+            کاپی رائٹ © 2025 اسلامی نیٹ ورک
+          </p>
+        </div>
+      </footer>
+        </template>
+    </Layout>
+  </ClientOnly>
+  <Layout v-else>
     <!-- Check if the author frontmatter exists and render the custom div -->
     <template #doc-before>
       <h1

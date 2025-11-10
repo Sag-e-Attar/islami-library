@@ -101,7 +101,7 @@ export default withPwa(
             const html = await md.renderAsync(src, env)
             if (env.frontmatter?.title) {
               // Check if the title already exists as a heading in the content
-              const titleAsHeading = env.frontmatter.title.replace(/[^\w\s-]/g, '').toLowerCase().replace(/\s+/g, '-')
+              const titleAsHeading = (env.frontmatter.title || '').replace(/[^\w\s-]/g, '').toLowerCase().replace(/\s+/g, '-')
               const hasTitleHeading = html.includes(`id="${titleAsHeading}"`) ||
                                      html.includes(`<h1>${env.frontmatter.title}</h1>`) ||
                                      src.includes(`# ${env.frontmatter.title}`)
