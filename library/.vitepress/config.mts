@@ -55,12 +55,12 @@ export default withPwa(
         background_color: "#ffffff",
         display: "standalone",
         orientation: "portrait",
-        start_url: "/islami-library/",
+        start_url: "/",
         lang: "ur",
         dir: "rtl",
         icons: [
           {
-            src: "/islami-library/logo.svg",
+            src: "/logo.svg",
             sizes: "any",
             type: "image/svg+xml",
             purpose: "any maskable",
