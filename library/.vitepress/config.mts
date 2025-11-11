@@ -42,6 +42,13 @@ export default withPwa(
       ["link", { rel: "icon", type: "image/svg+xml", href: "/islami-library/logo.svg" }],
       ["link", { rel: "apple-touch-icon", href: "/islami-library/logo.svg" }],
       ["meta", { name: "theme-color", content: "#10b981" }],
+      ["link", {
+        rel: "preload",
+        href: "/fonts/Mehr_Nastaliq_Web_v.2.0.woff",
+        as: "font",
+        type: "font/woff",
+        crossorigin: "anonymous"
+      }],
     ],
 
     pwa: {
