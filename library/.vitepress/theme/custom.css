@@ -1,6 +1,15 @@
 /* Import Lateef font for Arabic text */
 @import url('https://fonts.googleapis.com/css2?family=Lateef&display=swap');
 
+/* Jameel Noori Nastaleeq Font */
+@font-face {
+  font-family: 'jameel-noori-nastaleeq';
+  src: url('https://cdn.jsdelivr.net/gh/tariq-abdullah/urdu-web-font-CDN/JameelNooriNastaleeq.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Mehr Nastaliq Font */
 @font-face {
   font-family: 'Mehr Nastaliq Web';
@@ -10,9 +19,9 @@
   font-display: swap;
 }
 
-/* Apply Mehr Nastaliq font globally with 1.5x size increase */
+/* Apply Jameel Noori Nastaleeq as primary font with Mehr Nastaliq fallback */
 :root {
-  --vp-font-family-base: 'Mehr Nastaliq Web', serif;
+  --vp-font-family-base: 'jameel-noori-nastaleeq', 'Mehr Nastaliq Web', serif;
   --vp-font-family-mono: 'Courier New', monospace;
 
   /* Hero title gradient - Emerald to Teal */
