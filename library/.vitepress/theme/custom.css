@@ -4,7 +4,7 @@
 /* Jameel Noori Nastaleeq Font */
 @font-face {
   font-family: 'jameel-noori-nastaleeq';
-  src: url('https://cdn.jsdelivr.net/gh/tariq-abdullah/urdu-web-font-CDN/JameelNooriNastaleeq.woff') format('woff');
+  src: url('/fonts/JameelNooriNastaleeq.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -38,9 +38,16 @@ html {
   font-size: 24px; /* 16px * 1.5 = 24px */
 }
 
-/* Ensure VitePress container uses the scaled base */
+/* Ensure VitePress container uses the scaled base - responsive */
 #app {
-  font-size: 1.2rem; /* 24px * 1.2 = 28.8px for better readability */
+  font-size: 1rem; /* 24px on mobile */
+}
+
+/* Larger font size for desktop */
+@media (min-width: 768px) {
+  #app {
+    font-size: 1.2rem; /* 24px * 1.2 = 28.8px on desktop */
+  }
 }
 
 /* Scale up navigation font sizes */
@@ -83,8 +90,8 @@ html {
 }
 
 .VPDocAside .outline-link {
-  font-size: 16px !important;
-  line-height: 220%!important;
+  font-size: 18px !important;
+  line-height: 200%!important;
   padding-right: 4px!important;
 }
 
