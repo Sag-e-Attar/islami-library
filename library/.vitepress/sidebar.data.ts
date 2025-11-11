@@ -11,6 +11,7 @@ export interface SidebarItem {
 
 export interface SidebarGroup {
   text: string
+  link?: string
   collapsed: boolean
   items: SidebarItem[]
 }
@@ -123,6 +124,7 @@ function generateAuthorsSidebar(): SidebarGroup[] {
     const items = authorMap.get(slug)!
     sidebarGroups.push({
       text: getAuthorName(slug),
+      link: `/authors/${slug}/`, // Link to author profile page
       collapsed: true, // Collapsed by default
       items: items
     })

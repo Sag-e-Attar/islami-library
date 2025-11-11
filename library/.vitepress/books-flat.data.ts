@@ -10,6 +10,7 @@ export interface FlatBook {
   authorSlug: string;
   date?: string;
   fileDate?: Date;
+  fileName?: string;
   categories?: string[];
   tags?: string[];
 }
@@ -65,26 +66,37 @@ export default createContentLoader("**/*.md", {
           authorSlug,
           date: page.frontmatter?.date,
           fileDate,
+          fileName: parts[3], // Store filename for deterministic fallback
           categories: page.frontmatter?.categories || [],
           tags: page.frontmatter?.tags || [],
         };
       })
       .filter((book): book is FlatBook => book !== null)
       .sort((a, b) => {
-        // Try to sort by file system date first, then frontmatter date, then title
-        if (a.fileDate && b.fileDate) {
-          return b.fileDate.getTime() - a.fileDate.getTime(); // Newest first (descending)
+        // Try to detect if file dates are all the same (build environment issue)
+        const hasValidFileDates = a.fileDate && b.fileDate &&
+          (a.fileDate.getTime() !== b.fileDate.getTime());
+
+        if (hasValidFileDates) {
+          // Use file system modification time (most recent changes first)
+          return b.fileDate.getTime() - a.fileDate.getTime();
         }
 
-        if (a.fileDate) return -1; // a has file date, put it first
-        if (b.fileDate) return 1;  // b has file date, put it first
-
-        // Fallback to frontmatter date if no file dates
+        // Use frontmatter date if available (reliable fallback)
         const dateA = a.date ? new Date(a.date).getTime() : 0;
         const dateB = b.date ? new Date(b.date).getTime() : 0;
 
         if (dateA && dateB) {
           return dateB - dateA; // Newest first (descending)
+        }
+
+        if (dateA) return -1; // a has date, put it first
+        if (dateB) return 1;  // b has date, put it first
+
+        // Deterministic fallback: reverse alphabetical by filename
+        // This puts files with later names (like newer additions) first
+        if (a.fileName && b.fileName) {
+          return b.fileName.localeCompare(a.fileName);
         }
 
         // Final fallback to alphabetical by title

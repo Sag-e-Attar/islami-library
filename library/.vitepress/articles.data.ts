@@ -1,6 +1,7 @@
 import { createContentLoader } from 'vitepress'
 import fs from 'fs'
 import path from 'path'
+import { execSync } from 'child_process'
 
 export interface Article {
   title: string
@@ -9,6 +10,7 @@ export interface Article {
   author?: string
   date?: string
   fileDate?: Date
+  gitDate?: Date
 }
 
 export default createContentLoader('articles/**/*.md', {
@@ -25,6 +27,7 @@ export default createContentLoader('articles/**/*.md', {
         const fileName = page.url.split('/').pop() + '.md'
         const filePath = path.join(articlesDir, fileName)
         let fileDate: Date | undefined
+        let gitDate: Date | undefined
 
         try {
           const stats = fs.statSync(filePath)
@@ -33,33 +36,72 @@ export default createContentLoader('articles/**/*.md', {
           // File might not exist or accessible
         }
 
+        // Try to get Git commit date (more accurate for when content was added)
+        try {
+          const gitDateStr = execSync(`git log -1 --format=%cd -- "${filePath}"`, {
+            encoding: 'utf8',
+            stdio: 'pipe'
+          }).trim()
+          if (gitDateStr) {
+            gitDate = new Date(gitDateStr)
+          }
+        } catch (error) {
+          // Git command might fail (not in git repo, or file not tracked)
+        }
+
         return {
           title: page.frontmatter?.title || 'بے عنوان',
           url: page.url,
           description: page.frontmatter?.description || page.excerpt || '',
           author: page.frontmatter?.author || '',
           date: page.frontmatter?.date || '',
-          fileDate: fileDate
+          fileDate: fileDate,
+          gitDate: gitDate
         }
       })
 
-    // Sort by file creation date first, then frontmatter date, then title
+    // Sort with Git commit dates as primary, file dates as fallback
     return articles.sort((a, b) => {
-      // Try to sort by file system date first
-      if (a.fileDate && b.fileDate) {
-        return b.fileDate.getTime() - a.fileDate.getTime() // Newest first (descending)
+      // Prefer Git commit dates (most accurate for when content was added)
+      if (a.gitDate && b.gitDate) {
+        return b.gitDate.getTime() - a.gitDate.getTime(); // Newest first
       }
 
-      if (a.fileDate) return -1; // a has file date, put it first
-      if (b.fileDate) return 1;  // b has file date, put it first
+      // If one has Git date, prefer it
+      if (a.gitDate) return -1;
+      if (b.gitDate) return 1;
 
-      // Fallback to frontmatter date if no file dates
-      if (a.date && b.date) {
-        return new Date(b.date).getTime() - new Date(a.date).getTime()
+      // Fallback to file system modification time
+      if (a.fileDate && b.fileDate) {
+        // Try to detect if file dates are all the same (build environment issue)
+        const hasValidFileDates = a.fileDate && b.fileDate &&
+          (a.fileDate.getTime() !== b.fileDate.getTime());
+
+        if (hasValidFileDates) {
+          return b.fileDate.getTime() - a.fileDate.getTime();
+        }
+      }
+
+      // Use frontmatter date if available (reliable fallback)
+      const dateA = a.date ? new Date(a.date).getTime() : 0;
+      const dateB = b.date ? new Date(b.date).getTime() : 0;
+
+      if (dateA && dateB) {
+        return dateB - dateA; // Newest first (descending)
+      }
+
+      if (dateA) return -1; // a has date, put it first
+      if (dateB) return 1;  // b has date, put it first
+
+      // Deterministic fallback: reverse alphabetical by filename for new files
+      if (a.url && b.url) {
+        const fileNameA = a.url.split('/').pop() || '';
+        const fileNameB = b.url.split('/').pop() || '';
+        return fileNameB.localeCompare(fileNameA);
       }
 
       // Final fallback to alphabetical by title
-      return a.title.localeCompare(b.title)
+      return a.title.localeCompare(b.title);
     })
   }
 })

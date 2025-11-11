@@ -121,7 +121,7 @@
 </script>
 
 <template>
-  <div class="max-w-1100px mx-auto px-8 mt-10 mb-16">
+  <div class="max-w-1100px mx-auto px-5 mt-10 mb-16">
     <h1
       v-if="showTitle"
       class="font-title text-3rem font-bold text-center mb-12 leading-tight bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-500 bg-clip-text text-transparent"
@@ -254,12 +254,12 @@
     <!-- Grid View -->
     <div
       v-if="viewMode === 'grid'"
-      class="grid grid-cols-1 md:grid-cols-2 gap-6"
+      class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 gap-3 sm:gap-4 lg:gap-6"
     >
       <div
         v-for="book in filteredBooks"
         :key="book.url"
-        class="p-6 bg-[var(--vp-c-bg-soft)] border border-[var(--vp-c-divider)] rounded-2xl transition-all duration-300 hover:border-emerald-500 hover:shadow-lg hover:shadow-emerald-500/10"
+        class="p-4 sm:p-5 md:p-6 bg-[var(--vp-c-bg-soft)] border border-[var(--vp-c-divider)] rounded-2xl transition-all duration-300 hover:border-emerald-500 hover:shadow-lg hover:shadow-emerald-500/10"
       >
         <a
           :href="book.url"

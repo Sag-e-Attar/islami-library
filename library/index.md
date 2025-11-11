@@ -52,6 +52,13 @@ features:
     details: "PWA سپورٹ کے ساتھ مواد کو ڈاؤن لوڈ کرکے آفلائن بھی پڑھ سکتے ہیں"
 ---
 
+<script setup>
+import StatsCards from './.vitepress/theme/components/StatsCards.vue'
+</script>
+
+<!-- Statistics Section -->
+<StatsCards />
+
 <style>
   .VPHome {
     padding-bottom: 0;

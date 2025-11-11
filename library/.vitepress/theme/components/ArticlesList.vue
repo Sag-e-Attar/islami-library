@@ -48,7 +48,7 @@
 </script>
 
 <template>
-  <div class="max-w-1100px mx-auto px-8 mt-10 mb-16">
+  <div class="max-w-1100px mx-auto px-5 mt-10 mb-16">
     <h1
       class="font-title text-3rem font-bold text-center mb-12 leading-tight bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-500 bg-clip-text text-transparent"
     >
