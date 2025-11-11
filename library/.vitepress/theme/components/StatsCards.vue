@@ -1,5 +1,5 @@
 <template>
-  <div class="stats-section mt-6 mb-12">
+  <div v-if="isVisible" class="stats-section mt-6 mb-12">
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5">
       <!-- Total Books Card -->
       <a href="/books" class="stat-card-link">
@@ -81,10 +81,55 @@
 </template>
 
 <script setup lang="ts">
+import { ref, onMounted } from 'vue'
 // @ts-ignore - VitePress data loader type issue
 import { data as siteStats } from "../../stats-flat.data"
 
 const { totalBooks, totalArticles, totalAuthors, hamaraIslamAsbaqs } = siteStats
+
+const isVisible = ref(true)
+
+// Hide stats cards when navigating away from homepage
+onMounted(() => {
+  // Add click listeners to stat card links
+  const statLinks = document.querySelectorAll('.stat-card-link')
+  statLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      isVisible.value = false
+    })
+  })
+
+  // Listen for route changes
+  const handleRouteChange = () => {
+    // Check if current page is homepage
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+      // Show stats cards after a short delay to ensure page is loaded
+      setTimeout(() => {
+        isVisible.value = true
+      }, 100)
+    } else {
+      isVisible.value = false
+    }
+  }
+
+  // Initial check
+  handleRouteChange()
+
+  // Listen for browser navigation
+  window.addEventListener('popstate', handleRouteChange)
+
+  // Hide stats cards immediately when any navigation happens
+  document.addEventListener('click', (e) => {
+    const target = e.target as Element
+    const link = target.closest('a')
+    if (link && link.getAttribute('href') && link.getAttribute('href')?.startsWith('/')) {
+      // It's an internal link, hide stats cards
+      if (window.location.pathname === '/') {
+        isVisible.value = false
+      }
+    }
+  })
+})
 </script>
 
 <style scoped>
