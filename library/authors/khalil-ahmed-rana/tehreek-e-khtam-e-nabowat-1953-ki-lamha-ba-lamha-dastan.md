@@ -1,6 +1,10 @@
 ---
 title: تحریک ختم نبوت ۱۹۵۳ء کی لمحہ بہ لمحہ داستان
 author: ترتیب۔ شفقت عثمانی۔ خلیل احمد رانا
+categories:
+  - شخصیات
+  - رردِّ بدمذہب
+  - ردِّ قادیانیت 
 ---
 
 ## عرضِ حال
@@ -231,5 +235,11 @@ author: ترتیب۔ شفقت عثمانی۔ خلیل احمد رانا
 
 گرفتاری کے وقت۱۹۵۳ء کی تصویر ،دیوبندی مکتبہ فکر کی جتنی کتابوں میں مولانا عبدالستار خان نیازی کے حالات درج ہیں ، ان میں کہیں بھی داڑھی منڈوانے کا ذکر نہیں ۔
 
-![](maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-01.jpg)
-![](maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-02.jpg)
+![](images/maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-01.jpg)
+![](images/maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-02.gif)
+![](images/maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-03.gif)
+![](images/maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-04.gif)
+![](images/maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-05.gif)
+![](images/maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-06.gif)
+![](images/maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-07.gif)
+![](images/maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-08.gif)

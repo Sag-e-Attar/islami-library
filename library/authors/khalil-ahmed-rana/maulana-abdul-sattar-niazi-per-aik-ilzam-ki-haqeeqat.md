@@ -63,5 +63,11 @@ categories:
 
 آخر میں دیکھئے ۱۹۵۳ء کی اصل اور جعلی تصویر جو کہ ایک ساتھ شائع ہوئی تھیں۔ اس کے بعد ۱۹۵۳ء میں گرفتاری کے وقت کی اصل تصویر بھی دیکھئے جو کہ صادق قصوری صاحب کی کتاب’’مجاہد ملت، جلد دوم ، مطبوعہ عمیر پبلشرزاُردو بازار لاہور۱۹۹۷ء کے ٹائیٹل کے آخری صفحہ پر شائع ہو چکی ہے۔ کسی نے سچ کہا جھوٹ کے پائوں نہیں ہوتے۔
 
-![](maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-01.jpg)
-![](maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-02.jpg)
+![](images/maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-01.jpg)
+![](images/maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-02.gif)
+![](images/maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-03.gif)
+![](images/maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-04.gif)
+![](images/maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-05.gif)
+![](images/maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-06.gif)
+![](images/maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-07.gif)
+![](images/maulana-abdul-sattar-niazi-per-aik-ilzam-ki-haqeeqat-08.gif)
