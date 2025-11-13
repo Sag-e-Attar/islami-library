@@ -252,19 +252,29 @@ html {
 }
 
 .vp-doc h2 {
-  font-size: 1.7rem !important;
+  font-size: 1.4rem !important;
   margin: 0px 0 16px;
   border-top: 0;
   padding-top: 0;
   @apply text-emerald-600 dark:text-emerald-400;
 }
 .vp-doc h3 {
-  font-size: 1.3rem !important;
+  font-size: 1.2rem !important;
   margin: 0px 0 10px;
   border-top: 0;
   padding-top: 0;
   @apply text-orange-500 dark:text-orange-400;
 }
+
+@media (min-width: 768px) {
+  .vp-doc h2 {
+    font-size: 1.7rem !important;
+  }
+  .vp-doc h3 {
+    font-size: 1.3rem !important;
+  }
+}
+
 .vp-doc .header-anchor {
     top: 0px !important;
 }
