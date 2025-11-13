@@ -240,7 +240,7 @@ html {
 .vp-doc h5,
 .vp-doc h6 {
   font-weight: normal !important;
-  line-height: 2;
+  line-height: 1.5;
   letter-spacing: normal !important;
 }
 
@@ -252,14 +252,14 @@ html {
 }
 
 .vp-doc h2 {
-  font-size: 1.4rem !important;
+  font-size: 1.7rem !important;
   margin: 0px 0 16px;
   border-top: 0;
   padding-top: 0;
   @apply text-emerald-600 dark:text-emerald-400;
 }
 .vp-doc h3 {
-  font-size: 1.2rem !important;
+  font-size: 1.3rem !important;
   margin: 0px 0 10px;
   border-top: 0;
   padding-top: 0;
