@@ -658,14 +658,19 @@ span.progress-text {
   font-size: 0.6rem !important;
 }
 
-/* Hide back to top button on homepage - most aggressive approach */
-.VPHome .back-to-top-button,
-body.VPHome .back-to-top-button,
-.VPHome button.back-to-top-button,
-body.VPHome button.back-to-top-button,
-body[class*="home"] .back-to-top-button,
-html .VPHome .back-to-top-button,
-html .back-to-top-button[data-v-a9131788] {
+/* Hide back to top button on homepage only */
+body:has(.VPHome) .back-to-top-button {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+  width: 0 !important;
+  height: 0 !important;
+  overflow: hidden !important;
+}
+
+/* Fallback for browsers that don't support :has() */
+html[path="/"] .back-to-top-button {
   display: none !important;
   visibility: hidden !important;
   opacity: 0 !important;
