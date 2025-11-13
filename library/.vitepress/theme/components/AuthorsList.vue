@@ -1,13 +1,14 @@
 <template>
-  <div class="max-w-1100px mx-auto px-8 mt-10">
+  <div class="max-w-1100px mx-auto px-5 mt-10 mb-16">
     <h1
       class="font-title text-3rem font-bold text-center mb-12 leading-tight bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-500 bg-clip-text text-transparent"
     >
       مصنفین اور کتابیں
     </h1>
 
-    <div class="flex gap-6 flex-start">
-      <!-- Create columns using v-for -->
+    <!-- Desktop: Masonry layout, Mobile: Single column -->
+    <div class="hidden lg:flex gap-6 flex-start">
+      <!-- Create columns using v-for for desktop only -->
       <div
         v-for="(column, columnIndex) in authorColumns"
         :key="columnIndex"
@@ -93,8 +94,90 @@
         </div>
       </div>
     </div>
-    <div class="h-24"></div>
-  </div>
+
+    <!-- Mobile: Single column layout -->
+    <div class="lg:hidden flex flex-col gap-4">
+      <div
+        v-for="item in allAuthors"
+        :key="item.author.slug"
+        class="p-4 sm:p-5 bg-[var(--vp-c-bg-soft)] border border-[var(--vp-c-divider)] rounded-2xl transition-all hover:border-emerald-500 hover:shadow-lg hover:shadow-emerald-500/10"
+      >
+        <!-- Mobile author header -->
+        <div
+          class="flex items-center gap-3 mb-4 pb-3 border-b-2 border-[var(--vp-c-divider)]"
+        >
+          <div
+            class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center flex-shrink-0"
+          >
+            <svg
+              class="w-3.5 h-3.5 sm:w-4.5 sm:h-4.5 text-white"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+              ></path>
+            </svg>
+          </div>
+          <div class="flex-1 flex flex-col gap-1">
+            <a :href="`/authors/${item.author.slug}/`" class="text-lg sm:text-xl font-bold text-[var(--vp-c-text-1)] hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors no-underline">
+              {{ item.author.name }}
+            </a>
+            <span
+              class="inline-flex items-center gap-1 px-2 py-1 bg-gradient-to-br from-emerald-500 to-teal-500 text-white rounded-full text-xs font-semibold self-start"
+            >
+              <svg
+                class="w-3 h-3"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                ></path>
+              </svg>
+              <span class="inline-block">{{ item.author.books.length }}</span>
+              {{ item.author.books.length === 1 ? "کتاب" : "کتابیں" }}
+            </span>
+          </div>
+        </div>
+
+        <!-- Mobile books list -->
+        <div class="grid gap-2 sm:gap-3">
+          <div v-for="book in item.author.books" :key="book.url" class="block">
+            <a
+              :href="book.url"
+              class="flex items-center gap-2 sm:gap-3 p-3 bg-[var(--vp-c-bg)] border border-[var(--vp-c-divider)] rounded-lg no-underline text-[var(--vp-c-text-1)] transition-all text-sm sm:text-base hover:bg-[var(--vp-c-bg-soft)] hover:border-emerald-500 hover:-translate-x-2 sm:hover:-translate-x-5px hover:shadow-md hover:shadow-emerald-500/15"
+            >
+              <svg
+                class="w-3 h-3 sm:w-4 sm:h-4 text-emerald-500 flex-shrink-0"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M9 5l7 7-7 7"
+                  transform="rotate(180 12 12)"
+                ></path>
+              </svg>
+              <span class="flex-1 line-clamp-2">{{ book.title }}</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
 </template>
 
 <script setup lang="ts">
@@ -122,6 +205,14 @@
     }
 
     return columns
+  })
+
+  // All authors for mobile view
+  const allAuthors = computed(() => {
+    if (data && Array.isArray(data)) {
+      return data.map((author, index) => ({ author, index }))
+    }
+    return []
   })
 
   const handleResize = () => {
