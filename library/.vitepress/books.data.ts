@@ -15,7 +15,7 @@ export interface Author {
   books: Book[]
 }
 
-export default createContentLoader('**/*.md', {
+export default createContentLoader('authors/**/*.md', {
   includeSrc: false,
   render: false,
   excerpt: false,
@@ -52,18 +52,43 @@ export default createContentLoader('**/*.md', {
       authorMap.get(authorSlug)!.push(book)
     })
 
-    // Convert to Author array
+    // Convert to Author array with recent books first
     const authors: Author[] = []
     authorMap.forEach((books, slug) => {
+      // Sort books by file update time (most recent first)
+      const sortedBooks = books
+        .map(book => {
+          const pageData = rawData.find(p => p.url === book.url)
+          return {
+            ...book,
+            lastUpdated: pageData?.fs?.mtimeMs || 0
+          }
+        })
+        .sort((a, b) => b.lastUpdated - a.lastUpdated) // Most recent first
+        .map(({ lastUpdated, ...book }) => book)
+
       authors.push({
-        name: books[0].author,
+        name: sortedBooks[0].author,
         slug,
-        books: books.sort((a, b) => a.title.localeCompare(b.title))
+        books: sortedBooks
       })
     })
 
-    // Sort authors by name
-    return authors.sort((a, b) => a.name.localeCompare(b.name))
+    // Sort authors by most recent book activity
+    return authors.sort((a, b) => {
+      const aLatest = a.books[0]?.url
+      const bLatest = b.books[0]?.url
+
+      if (!aLatest || !bLatest) return 0
+
+      const aPage = rawData.find(p => p.url === aLatest)
+      const bPage = rawData.find(p => p.url === bLatest)
+
+      const aTime = aPage?.fs?.mtimeMs || 0
+      const bTime = bPage?.fs?.mtimeMs || 0
+
+      return bTime - aTime // Most recent first
+    })
   }
 })
 
