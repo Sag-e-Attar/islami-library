@@ -95,6 +95,62 @@ html {
   padding-right: 4px!important;
 }
 
+/* Mobile TOC links - larger font size for better readability */
+@media (max-width: 768px) {
+  :root .VPDocAside .outline-link,
+  :root .VPDocAsideOutline .outline-link,
+  html[dir] .VPDocAside .outline-link,
+  html[dir] .VPDocAsideOutline .outline-link {
+    font-size: 0.8rem !important;
+    line-height: 1.5rem !important;
+    font-weight: 400 !important;
+    color: var(--vp-c-text-2) !important;
+    white-space: nowrap !important;
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+  }
+
+  /* Target all outline-link elements on mobile with maximum specificity */
+  body .VPDocAside .outline-link,
+  body .VPDocAsideOutline .outline-link,
+  .VPSidebar .outline-link,
+  .VPDoc .outline-link {
+    font-size: 0.8rem !important;
+    line-height: 1.5rem !important;
+  }
+
+  /* Universal selector for outline-link on mobile */
+  * .outline-link {
+    font-size: 0.8rem !important;
+    line-height: 1.5rem !important;
+  }
+
+  /* Most aggressive override - target any element with outline-link class */
+  [class*="outline-link"] {
+    font-size: 0.8rem !important;
+    line-height: 1.5rem !important;
+  }
+
+  /* Override inline styles with maximum specificity */
+  .VPDocAside a[class*="outline-link"],
+  .VPDocAsideOutline a[class*="outline-link"] {
+    font-size: 0.8rem !important;
+    line-height: 1.5rem !important;
+  }
+
+  /* Back to top link - same font size as TOC links */
+  .top-link,
+  a[class*="top-link"] {
+    font-size: 0.8rem !important;
+    line-height: 1.5rem !important;
+  }
+
+  .header .top-link {
+    font-size: 0.8rem !important;
+    line-height: 1.5rem !important;
+  }
+}
+
 /* Scale up navigation items */
 .VPNavBar .title {
   @apply text-xl;
@@ -434,6 +490,33 @@ html {
 .VPLocalNav .icon {
   width: 24px !important;
   height: 24px !important;
+}
+
+/* Mobile Navigation Screen Menu - Larger text for better readability */
+.VPNavScreenMenu .VPNavScreenMenuLink {
+  font-size: 1rem !important;
+  line-height: 1.8 !important;
+  padding: 0.75rem 1rem !important;
+  font-family: 'Mehr Nastaliq Web', serif !important;
+}
+
+/* Mobile navigation menu items - ensure text is readable */
+.VPNavScreenMenu .VPNavScreenMenuLink span {
+  font-size: 1rem !important;
+  color: var(--vp-c-text-1) !important;
+}
+
+/* Mobile navigation menu active/hover states */
+.VPNavScreenMenu .VPNavScreenMenuLink:hover span,
+.VPNavScreenMenu .VPNavScreenMenuLink.VPNavScreenMenuLinkActive span {
+  color: var(--vp-c-brand-1) !important;
+}
+
+/* Mobile Theme Appearance text - same size as menu items */
+.VPNavScreenAppearance .text {
+  font-size: 1rem !important;
+  font-family: 'Mehr Nastaliq Web', serif !important;
+  color: var(--vp-c-text-1) !important;
 }
 
 /* Reference numbers - circular badges for footnotes/references */

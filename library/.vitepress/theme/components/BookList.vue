@@ -181,10 +181,10 @@
           v-model="searchQuery"
           type="text"
           placeholder="کتاب یا مصنف تلاش کریں.."
-          class="urdu-input w-full px-6 py-4 pl-14 text-lg border-2 border-[var(--vp-c-divider)] rounded-xl focus:outline-none focus:border-emerald-500 bg-[var(--vp-c-bg-soft)] text-[var(--vp-c-text-1)] placeholder-[var(--vp-c-text-2)] transition-all duration-200 rtl-text"
+          class="urdu-input w-full px-4 py-3 pl-12 text-lg border-2 border-[var(--vp-c-divider)] rounded-xl focus:outline-none focus:border-emerald-500 bg-[var(--vp-c-bg-soft)] text-[var(--vp-c-text-1)] placeholder-[var(--vp-c-text-2)] transition-all duration-200 rtl-text"
         />
         <span
-          class="absolute left-4 top-4.5 text-[var(--vp-c-text-2)] text-xl i-carbon-search"
+          class="absolute left-3 top-3.5 text-[var(--vp-c-text-2)] text-xl i-carbon-search"
         ></span>
       </div>
 
@@ -193,7 +193,7 @@
         <div class="flex-1">
           <select
             v-model="selectedAuthor"
-            class="urdu-select w-full px-6 py-4 text-lg border-2 border-[var(--vp-c-divider)] rounded-xl focus:outline-none focus:border-emerald-500 bg-[var(--vp-c-bg-soft)] text-[var(--vp-c-text-1)] cursor-pointer transition-all duration-200 rtl-text appearance-none"
+            class="urdu-select w-full px-4 py-3 text-lg border-2 border-[var(--vp-c-divider)] rounded-xl focus:outline-none focus:border-emerald-500 bg-[var(--vp-c-bg-soft)] text-[var(--vp-c-text-1)] cursor-pointer transition-all duration-200 rtl-text appearance-none"
           >
             <option value="all">تمام مصنفین</option>
             <option v-for="author in authors" :key="author" :value="author">
@@ -204,7 +204,7 @@
         <div class="flex-1">
           <select
             v-model="selectedCategory"
-            class="urdu-select w-full px-6 py-4 text-lg border-2 border-[var(--vp-c-divider)] rounded-xl focus:outline-none focus:border-emerald-500 bg-[var(--vp-c-bg-soft)] text-[var(--vp-c-text-1)] cursor-pointer transition-all duration-200 rtl-text appearance-none"
+            class="urdu-select w-full px-4 py-3 text-lg border-2 border-[var(--vp-c-divider)] rounded-xl focus:outline-none focus:border-emerald-500 bg-[var(--vp-c-bg-soft)] text-[var(--vp-c-text-1)] cursor-pointer transition-all duration-200 rtl-text appearance-none"
           >
             <option value="all">تمام زمرے</option>
             <option
@@ -220,7 +220,7 @@
           <button
             @click="resetFilters"
             :disabled="searchQuery === '' && selectedAuthor === 'all' && selectedCategory === 'all'"
-            class="px-6 py-4 text-lg border-2 border-[var(--vp-c-divider)] rounded-xl focus:outline-none focus:border-red-500 bg-[var(--vp-c-bg-soft)] text-[var(--vp-c-text-1)] cursor-pointer transition-all duration-200 rtl-text disabled:opacity-50 disabled:cursor-not-allowed hover:border-red-500 hover:text-red-600 dark:hover:text-red-400"
+            class="px-4 py-3 text-lg border-2 border-[var(--vp-c-divider)] rounded-xl focus:outline-none focus:border-red-500 bg-[var(--vp-c-bg-soft)] text-[var(--vp-c-text-1)] cursor-pointer transition-all duration-200 rtl-text disabled:opacity-50 disabled:cursor-not-allowed hover:border-red-500 hover:text-red-600 dark:hover:text-red-400"
           >
             فلٹر صاف کریں
           </button>
@@ -259,45 +259,45 @@
       <div
         v-for="book in filteredBooks"
         :key="book.url"
-        class="p-4 sm:p-5 md:p-6 bg-[var(--vp-c-bg-soft)] border border-[var(--vp-c-divider)] rounded-2xl transition-all duration-300 hover:border-emerald-500 hover:shadow-lg hover:shadow-emerald-500/10"
+        class="p-3 sm:p-4 md:p-6 bg-[var(--vp-c-bg-soft)] border border-[var(--vp-c-divider)] rounded-2xl transition-all duration-300 hover:border-emerald-500 hover:shadow-lg hover:shadow-emerald-500/10"
       >
         <a
           :href="book.url"
           class="block"
         >
-          <div class="flex items-start gap-4">
+          <div class="flex items-start gap-3 sm:gap-4">
             <div
-              class="p-2 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex-shrink-0 mt-3"
+              class="p-1.5 sm:p-2 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex-shrink-0 mt-2 sm:mt-3"
             >
-              <span class="i-carbon-book text-xl text-white"></span>
+              <span class="i-carbon-book text-lg sm:text-xl text-white"></span>
             </div>
             <div class="flex-1">
               <h3
-                class="text-xl font-semibold text-[var(--vp-c-text-1)] mb-[6px] leading-relaxed"
+                class="text-lg sm:text-xl font-semibold text-[var(--vp-c-text-1)] mb-[8px] sm:mb-[10px] leading-relaxed"
               >
                 {{ book.title }}
               </h3>
-              <div class="flex items-center gap-2 text-[var(--vp-c-text-2)]">
-                <span class="i-carbon-user text-base"></span>
-                <span>{{ book.author }}</span>
+              <div class="flex items-center gap-2 text-[var(--vp-c-text-2)] text-sm sm:text-base">
+                <span class="i-carbon-user text-sm sm:text-base"></span>
+                <span class="text-sm sm:text-base">{{ book.author }}</span>
               </div>
             </div>
           </div>
 
           <div
             v-if="book.tags && book.tags.length > 0"
-            class="flex flex-wrap gap-2 mt-4"
+            class="flex flex-wrap gap-1.5 sm:gap-2 mt-3 sm:mt-4"
           >
             <span
               v-for="tag in book.tags"
               :key="tag"
-              class="px-3 py-1 text-sm bg-[var(--vp-c-bg)] text-[var(--vp-c-text-2)] rounded-lg border border-[var(--vp-c-divider)]"
+              class="px-2 sm:px-3 py-1 text-xs sm:text-sm bg-[var(--vp-c-bg)] text-[var(--vp-c-text-2)] rounded-lg border border-[var(--vp-c-divider)]"
             >
               #{{ tag }}
             </span>
           </div>
 
-          <div v-if="book.date" class="mt-3 text-sm text-[var(--vp-c-text-2)]">
+          <div v-if="book.date" class="mt-2 sm:mt-3 text-xs sm:text-sm text-[var(--vp-c-text-2)]">
             {{ formatDate(book.date) }}
           </div>
         </a>
@@ -305,7 +305,7 @@
         <!-- Categories outside the link -->
         <div
           v-if="showCategories && book.categories && book.categories.length > 0"
-          class="flex flex-wrap gap-2 mt-4"
+          class="flex flex-wrap gap-1.5 sm:gap-2 mt-3 sm:mt-4"
         >
           <button
             v-for="category in book.categories"
@@ -459,14 +459,30 @@ td:last-child {
 
   .urdu-input {
     font-family: "Mehr Nastaliq Web", serif;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     text-align: left;
     direction: rtl;
   }
 
+  /* Mobile-specific font size adjustments */
+  @media (max-width: 640px) {
+    .urdu-input {
+      font-size: 1rem;
+    }
+
+    .urdu-select {
+      font-size: 1rem;
+    }
+
+    /* Ensure search placeholder fits on mobile */
+    .urdu-input::placeholder {
+      font-size: 0.9rem;
+    }
+  }
+
   .urdu-select {
     font-family: "Mehr Nastaliq Web", serif;
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     text-align: left;
     direction: rtl;
     background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"%3e%3cpath stroke="%236b7280" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m6 8 4 4 4-4"/%3e%3c/svg%3e');

@@ -182,12 +182,12 @@ export default withPwa(
 
       // RTL specific configs
       outline: {
-        label: "فہرست",
+        label: "موضوعات",
         level: [2, 3],
       },
 
-      darkModeSwitchLabel: "تھیم",
-      sidebarMenuLabel: "مینو",
+      darkModeSwitchLabel: "مظہر (رنگ)",
+      sidebarMenuLabel: "طرفی فہرست",
       returnToTopLabel: "واپس اوپر",
 
       docFooter: {

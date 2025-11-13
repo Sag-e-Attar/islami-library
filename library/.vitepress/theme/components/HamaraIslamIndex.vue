@@ -603,6 +603,19 @@
     border: 1px solid var(--vp-c-divider);
   }
 
+  /* Reduce table container padding on mobile */
+  @media (max-width: 768px) {
+    .table-container {
+      padding: 0.5rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .table-container {
+      padding: 0.25rem;
+    }
+  }
+
   .table-wrapper {
     overflow-x: auto;
   }
