@@ -12,9 +12,9 @@
 Islami Library is an open-source digital library dedicated to preserving and sharing Islamic knowledge in Urdu. The platform hosts books from renowned Islamic scholars and educational articles on various Islamic topics.
 
 **Key Features:**
-- 📖 **47+ Islamic books** from renowned Sunni scholars
-- ✍️ **20+ educational articles** on Islamic topics
-- 👥 **13+ authors** including Allama Ahmed Saeed Kazmi, Allama Arshad-ul-Qadri, and more
+- 📖 **Islamic books** from renowned Sunni scholars
+- ✍️ **Educational articles** on Islamic topics
+- 👥 **Renowned authors** including Allama Ahmed Saeed Kazmi, Allama Arshad-ul-Qadri, and many more
 - 🔍 **Advanced search** with frontmatter title indexing
 - 🏷️ **Category filtering** and author-wise organization
 - 🌙 **Dark mode** with beautiful Urdu typography
@@ -32,6 +32,7 @@ Islami Library is an open-source digital library dedicated to preserving and sha
 - **[TypeScript](https://www.typescriptlang.org/)** - Type-safe development
 - **[PWA](https://vite-pwa-org.netlify.app/)** - Progressive Web App support
 - **[PostCSS RTL](https://github.com/MohammadYounes/rtlcss)** - RTL CSS transformation
+- **Jameel Noori Nastaleeq** - Premium Urdu typography
 - **Mehr Nastaliq Web** - Premium Urdu typography
 - **[Carbon Icons](https://carbon.designsystem.design/)** & **[Phosphor Icons](https://phosphoricons.com/)** - Icon libraries
 
@@ -130,6 +131,17 @@ For writing and editing Urdu books and articles, we recommend **[MarkText](https
 
 We welcome contributions from everyone! Whether you're fixing a typo, adding a new book, or improving the website, your help is appreciated.
 
+### 📝 Formatting Guidelines
+
+For detailed markdown formatting instructions and examples, please see our **[FORMATTING_GUIDE.md](FORMATTING_GUIDE.md)**. This guide covers:
+
+- Proper Urdu text formatting
+- Arabic/Quranic verse formatting
+- Heading and list conventions
+- Book structure examples
+- Code block and quote usage
+- Best practices for Islamic content
+
 ### Ways to Contribute
 
 #### 1. 📚 Add a New Book
@@ -147,77 +159,18 @@ We welcome contributions from everyone! Whether you're fixing a typo, adding a n
      - اورادووظائف
    ---
    ```
-4. **If adding a new author**, the system will automatically:
+4. **If adding a new author**, add author details to `library/authors/authors.json` and the system will automatically:
    - ✅ Detect the new author from the file path
    - ✅ Generate author profile page
-   - ✅ Update sidebar navigation
    - ✅ Add to books listing
-   - ✅ Include in search results
 
 5. Create a pull request with a clear description
 
 **🎉 Automated Features:**
 - **No manual configuration needed** - the system automatically handles new authors and books
 - **Instant search integration** - new books appear in search immediately
-- **Automatic sidebar generation** - navigation updates automatically
+- **Automatic sidebar generation** - navigation updates automatically from authors.json
 - **Category system** - optional tags for better organization
-
-**Markdown Formatting Conventions:**
-
-When writing book or article content, please follow these formatting guidelines:
-
-- **Arabic/Quranic Verses**: Use blockquote format with `>`
-  ```markdown
-  > إِنَّ اللَّهَ وَمَلَائِكَتَهُ يُصَلُّونَ عَلَى النَّبِيِّ
-  ```
-
-- **Inline Arabic Words**: Use backticks for individual Arabic terms in Urdu text
-  ```markdown
-  اسلام میں `صلوٰۃ` کی بہت اہمیت ہے اور یہ دین کا اہم رکن ہے۔
-  ```
-
-- **Main Headlines**: Use `##` (H2) for main chapter/section titles
-  ```markdown
-  ## پہلا باب: نماز کی اہمیت
-  ```
-
-- **Sub-headlines**: Use `###` (H3) for subsections
-  ```markdown
-  ### نماز کے فوائد
-  ```
-
-- **Lists**: Use `-` for unordered lists, numbers for ordered lists
-  ```markdown
-  - پہلا نکتہ
-  - دوسرا نکتہ
-
-  1. پہلا مرحلہ
-  2. دوسرا مرحلہ
-  ```
-
-**Example Book Structure:**
-```markdown
----
-title: اخلاق اور انسانیت
-author: علامہ احمد سعید کاظمی
----
-
-## پہلا باب: اخلاق کی تعریف
-
-اخلاق کا مطلب ہے انسانی کردار اور `حُسنِ اَخلاق` کی اہمیت...
-
-### قرآن میں اخلاق
-
-قرآن مجید میں ارشاد ہے:
-
-> وَإِنَّكَ لَعَلَىٰ خُلُقٍ عَظِيمٍ
-
-اس آیت میں نبی کریم ﷺ کے `اَخلاقِ عالیہ` کا ذکر ہے۔
-
-## دوسرا باب: اچھے اخلاق کی اقسام
-
-یہاں مزید تفصیل...
-```
 
 #### 2. ✍️ Add an Article
 
@@ -251,7 +204,7 @@ Have ideas to improve the library? Open an issue with the `enhancement` label an
 ### Contribution Guidelines
 
 - **Content Quality:** Ensure all Islamic content is authentic and from reliable sources
-- **Urdu Language:** Use proper Urdu grammar and the Mehr Nastaliq font renders correctly
+- **Urdu Language:** Use proper Urdu grammar.
 - **Formatting:** Follow the existing markdown structure
 - **Commit Messages:** Write clear, descriptive commit messages in English
 - **Testing:** Test your changes locally before submitting
@@ -285,12 +238,15 @@ Have ideas to improve the library? Open an issue with the `enhancement` label an
 
 ### For Pakistani & Indian Contributors | پاکستانی اور بھارتی معاونین کے لیے
 
-ہم پاکستان اور بھارت کے اردو بولنے والے معاونین کا خصوصی طور پر خیرمقدم کرتے ہیں۔ اگر آپ کے پاس اسلامی کتب یا مضامین ہیں جو آپ اس لائبریری میں شامل کرنا چاہتے ہیں، تو براہ کرم پل ریکویسٹ بھیجیں۔
+ہم پاکستان اور بھارت کے اردو بولنے والے معاونین کا خصوصی طور پر خیرمقدم کرتے ہیں۔ اگر آپ کے پاس اہلسنت کی اسلامی کتب یا مضامین ہیں جو آپ اس لائبریری میں شامل کرنا چاہتے ہیں، تو براہ کرم پل ریکویسٹ بھیجیں۔
 
 **اہم نوٹ:**
 - تمام مواد معتبر ذرائع سے ہونا چاہیے
 - کاپی رائٹ کا خیال رکھیں - صرف وہی مواد شامل کریں جس کی اجازت ہو
 - اگر گِٹ ہب استعمال کرنے میں مشکل ہو تو ایشو کھول کر مدد مانگیں
+
+**فائل فارمیٹ کے بارے میں:**
+اگر آپ کے پاس ان پیج فارمیٹ یا ڈاکومنٹ فارمیٹ میں اردو کتب یا مضامین ہیں، تو آپ ہمیں یہ فائلیں بھیج سکتے ہیں، ہم ان کتب/مضامین کو لائبریری میں شامل کر سکتے ہیں۔ براہ کرم گِٹ ہَب ایشو کے ذریعے رابطہ کریں۔
 
 ## 📝 License
 
