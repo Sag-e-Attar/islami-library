@@ -168,52 +168,28 @@ html {
   letter-spacing: normal !important;
 }
 
-/* Hero main title with Lalezar font and gradient */
+/* Hero main title - Lalezar font with 3rem size */
 .VPHero .name {
   font-family: 'Lalezar', 'Mehr Nastaliq Web', system-ui, sans-serif !important;
+  font-weight: 700 !important;
+  font-size: 3rem !important;
+}
+
+.VPHero .clip {
+  font-family: 'Lalezar', 'Mehr Nastaliq Web', system-ui, sans-serif !important;
+  font-weight: 700 !important;
   font-size: 3rem !important;
   line-height: 1 !important;
-  margin-bottom: 0.6rem !important;
+  margin-bottom: .6rem !important;
+  background-size: 200% 200% !important;
+  animation: gradient-shift 8s ease infinite !important;
 }
 
-.VPHero .name,
-.VPHero .name .clip {
-  color: transparent;
-  background: var(--vp-home-hero-name-background);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* Gradient effect on first button */
-.VPHome .VPHero .VPButton.brand {
-  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-  border: none;
-  transition: all 0.3s ease;
-}
-
-.VPHome .VPHero .VPButton.brand:hover {
-  background: linear-gradient(135deg, #059669 0%, #10b981 100%);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 16px rgba(16, 185, 129, 0.3);
-}
-
-.dark .VPHome .VPHero .VPButton.brand {
-  background: linear-gradient(135deg, #34d399 0%, #6ee7b7 100%);
-}
-
-.dark .VPHome .VPHero .VPButton.brand:hover {
-  background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
-  box-shadow: 0 8px 16px rgba(52, 211, 153, 0.4);
-}
-
-/* Hero buttons */
-.VPHome .VPHero .VPButton.brand,
-.VPHome .VPHero .VPButton.alt {
-  font-size: 1rem !important;
-  line-height: 90% !important;
-  padding: 0.4em 1rem 0.6rem !important;
-  border-radius: 30px;
+/* Add subtle gradient animation to make it more dynamic */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 /* Hero subtitle - decrease font size by 10px */
@@ -241,29 +217,18 @@ html {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
-  height: 500px;
-  background:
-    radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.6) 0%, rgba(52, 211, 153, 0.4) 25%, rgba(20, 184, 166, 0.2) 50%, transparent 70%);
-  filter: blur(60px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  width: 300px;
+  height: 300px;
+  background: var(--vp-home-hero-image-background-image);
+  filter: var(--vp-home-hero-image-filter);
+  opacity: 0.8;
+  transition: all 1.5s cubic-bezier(0.4, 0, 0.2, 1);
   pointer-events: none;
 }
 
 .VPHome .VPHero.has-image:hover .image-bg {
   transform: translate(-50%, -50%) scale(0.7);
-  filter: blur(40px);
-  opacity: 0.7;
-}
-
-/* Dark mode adjustments */
-.dark .VPHome .VPHero.has-image .image-bg {
-  background:
-    radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.7) 0%, rgba(52, 211, 153, 0.5) 25%, rgba(34, 211, 238, 0.3) 50%, transparent 70%);
-}
-
-.dark .VPHome .VPHero.has-image:hover .image-bg {
-  opacity: 0.5;
+  opacity: 0.2;
 }
 
 /* Show the logo temporarily to verify it loads */
@@ -312,7 +277,7 @@ html {
   margin: 0px 0 16px;
   border-top: 0;
   padding-top: 0;
-  @apply text-emerald-600 dark:text-emerald-400;
+  color: var(--vp-c-brand-1);
 }
 .vp-doc h3 {
   font-size: 1.2rem !important;
@@ -337,7 +302,7 @@ html {
 
 /* Highlight style for strong tags - similar to <mark> */
 .vp-doc strong {
-  background-color: rgba(16, 185, 129, 0.15); /* Light emerald highlight */
+  background-color: var(--vp-c-brand-1, rgba(16, 185, 129, 0.15)); /* Dynamic brand color highlight */
   padding: 0.1em 0.3em;
   border-radius: 3px;
   font-weight: normal; /* Nastaliq doesn't support bold */
