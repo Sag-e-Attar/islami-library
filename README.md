@@ -32,8 +32,7 @@ Islami Library is an open-source digital library dedicated to preserving and sha
 - **[TypeScript](https://www.typescriptlang.org/)** - Type-safe development
 - **[PWA](https://vite-pwa-org.netlify.app/)** - Progressive Web App support
 - **[PostCSS RTL](https://github.com/MohammadYounes/rtlcss)** - RTL CSS transformation
-- **Jameel Noori Nastaleeq** - Premium Urdu typography
-- **Mehr Nastaliq Web** - Premium Urdu typography
+- **Jameel Noori Nastaleeq** & **Mehr Nastaliq Web** - Premium Urdu typography
 - **[Carbon Icons](https://carbon.designsystem.design/)** & **[Phosphor Icons](https://phosphoricons.com/)** - Icon libraries
 
 ## 📂 Content Structure | مواد کی ڈھانچہ
