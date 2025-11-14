@@ -2,7 +2,8 @@
   import DefaultTheme from "vitepress/theme"
   import { useData } from "vitepress"
   import { onMounted, onBeforeUnmount, computed } from "vue"
-  
+  import authorsData from "../../authors/authors.json"
+
   const { Layout } = DefaultTheme
   const { frontmatter } = useData()
   const { page } = useData()
@@ -30,6 +31,28 @@
     }
 
     return ''
+  }
+
+  // Function to find author slug by name (for article pages)
+  const getAuthorSlugByName = (authorName) => {
+    if (!authorName) return ''
+
+    // Find the author in authors.json by matching the name
+    for (const [slug, authorData] of Object.entries(authorsData)) {
+      if (authorData.name === authorName) {
+        return slug
+      }
+    }
+
+    return ''
+  }
+
+  // Function to check if author exists in authors.json
+  const authorExists = (authorName) => {
+    if (!authorName) return false
+
+    // Check if any author in authors.json has this name
+    return Object.values(authorsData).some(author => author.name === authorName)
   }
 
   // Auto-scroll active TOC item into view
@@ -112,6 +135,14 @@
             مصنف: {{ frontmatter.author }}
           </a>
         </span>
+        <span v-else-if="authorExists(frontmatter.author)">
+          <a
+            :href="`/authors/${getAuthorSlugByName(frontmatter.author)}/`"
+            class="text-white hover:text-emerald-200 dark:hover:text-emerald-300 transition-colors no-underline"
+          >
+            مصنف: {{ frontmatter.author }}
+          </a>
+        </span>
         <span v-else>
           مصنف: {{ frontmatter.author }}
         </span>
@@ -173,6 +204,14 @@
         <span v-if="!isArticlePage">
           <a
             :href="`/authors/${getAuthorSlugFromUrl()}/`"
+            class="text-white hover:text-emerald-200 dark:hover:text-emerald-300 transition-colors no-underline"
+          >
+            مصنف: {{ frontmatter.author }}
+          </a>
+        </span>
+        <span v-else-if="authorExists(frontmatter.author)">
+          <a
+            :href="`/authors/${getAuthorSlugByName(frontmatter.author)}/`"
             class="text-white hover:text-emerald-200 dark:hover:text-emerald-300 transition-colors no-underline"
           >
             مصنف: {{ frontmatter.author }}

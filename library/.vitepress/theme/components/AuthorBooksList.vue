@@ -29,9 +29,9 @@ const authorArticles = computed(() => {
 
   const authorName = authorData.value.name
   console.log('Author name from JSON:', authorName)
-  console.log('All articles:', articles.map(a => ({title: a.frontmatter?.title, author: a.frontmatter?.author, url: a.url})))
+  console.log('All articles:', articles.map(a => ({title: a.title, author: a.author, url: a.url})))
 
-  const filtered = articles.filter(article => article.frontmatter?.author === authorName)
+  const filtered = articles.filter(article => article.author === authorName)
   console.log('Filtered articles:', filtered)
   return filtered
 })
@@ -95,26 +95,27 @@ const navigateToArticle = (url: string) => {
 
     <!-- Articles Section -->
     <div v-if="authorArticles.length > 0" class="mt-12">
-      <h3 class="text-1.5rem font-semibold text-[var(--vp-c-text-1)] mb-6">مضامین</h3>
+      <h3 class="font-title text-2rem font-bold text-center mb-8 leading-tight bg-gradient-to-r from-emerald-600 via-teal-500 to-cyan-500 bg-clip-text text-transparent">مضامین</h3>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div
           v-for="article in authorArticles"
           :key="article.url"
-          class="group p-6 bg-[var(--vp-c-bg-soft)] border border-[var(--vp-c-divider)] rounded-2xl transition-all duration-300 hover:border-blue-500 hover:shadow-lg hover:shadow-blue-500/10 cursor-pointer"
+          class="group block p-6 bg-[var(--vp-c-bg-soft)] border border-[var(--vp-c-divider)] rounded-xl transition-all duration-200 hover:shadow-md hover:border-emerald-400 cursor-pointer"
           @click="navigateToArticle(article.url)"
         >
-          <div class="flex items-start gap-4">
-            <div class="p-2 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex-shrink-0 mt-3">
-              <span class="i-carbon-document text-xl text-white"></span>
-            </div>
-            <div class="flex-1">
-              <h4 class="text-xl font-semibold text-[var(--vp-c-text-1)] mb-[6px] leading-relaxed">
-                {{ article.frontmatter.title }}
-              </h4>
-              <p v-if="article.frontmatter.description" class="text-[var(--vp-c-text-2)] text-sm leading-relaxed line-clamp-2">
-                {{ article.frontmatter.description }}
-              </p>
-            </div>
+          <div class="flex flex-col h-full">
+            <!-- Article Title -->
+            <h4 class="text-xl font-bold text-[var(--vp-c-text-1)] mb-3 leading-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-400 transition-colors">
+              {{ article.title }}
+            </h4>
+
+            <!-- Article Description -->
+            <p
+              v-if="article.description"
+              class="text-[var(--vp-c-text-2)] text-sm leading-relaxed line-clamp-3"
+            >
+              {{ article.description }}
+            </p>
           </div>
         </div>
       </div>
@@ -129,6 +130,6 @@ const navigateToArticle = (url: string) => {
 .author-books-section {
   max-width: 800px;
   margin: 0 auto;
-  padding: 2rem 0;
+  padding: 2rem 0.75rem;
 }
 </style>

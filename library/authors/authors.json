@@ -10,12 +10,12 @@
     "slug": "dr.altaf-hussain-saeedi",
     "bio": "اسلامی محقق، مصنف، اور اسکالر",
 
-    "specialization": ["تاریخ", "سیرت", "تحقیق"]
+    "specialization": ["تاریخ", "سیرت", "تحقیق", "مناظرہ", "ردِّ بدمذہب"]
   },
   "khalil-ahmed-rana": {
     "name": "خلیل احمد رانا",
     "slug": "khalil-ahmed-rana",
-    "specialization": ["تاریخ", "سیرت", "تعلیم"]
+    "specialization": ["تاریخ", "سیرت", "مناظرہ", "ردِّ بدمذہب"]
   },
   "allama-arshad-ul-qadri": {
     "name": "علامہ ارشدالقادری",
