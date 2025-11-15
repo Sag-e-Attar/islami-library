@@ -253,8 +253,8 @@
         v-if="frontmatter.partialFormatted"
         class="partial-content-notification mb-3"
       >
-        <div class="flex items-center justify-between gap-3">
-          <div class="flex items-center gap-3">
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div class="flex items-start gap-3 sm:items-center">
             <div class="flex-shrink-0">
               <svg
                 class="warning-icon"
@@ -274,7 +274,7 @@
               یہ تحریر جزوی طور پر سنواری گئی ہے، تعاون کرکے اس مکمل کریں۔
             </p>
           </div>
-          <div class="flex items-center gap-2 flex-shrink-0">
+          <div class="flex items-center gap-2 flex-shrink-0 sm:ml-auto">
             <a
               :href="`https://github.com/Sag-e-Attar/islami-library/edit/master/library/${page.relativePath}`"
               target="_blank"
