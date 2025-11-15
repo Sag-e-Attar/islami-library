@@ -644,3 +644,172 @@ html[path="/"] .back-to-top-button {
   height: 0 !important;
   overflow: hidden !important;
 }
+
+/* Partial content notification styles - with maximum specificity */
+.partial-content-notification,
+div.partial-content-notification,
+body .partial-content-notification,
+.VPDoc .partial-content-notification {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 0.75rem;
+  border: 1px solid;
+  background-color: #fffbeb !important; /* amber-50 */
+  border-color: #fed7aa !important; /* amber-200 */
+}
+
+html.dark .partial-content-notification,
+html.dark div.partial-content-notification,
+html.dark body .partial-content-notification,
+html.dark .VPDoc .partial-content-notification {
+  background-color: #18181b !important; /* zinc-900 */
+  border-color: #27272a !important; /* zinc-700 */
+}
+
+/* Override any UnoCSS generated background classes */
+html.dark .partial-content-notification[style*="background"] {
+  background-color: #18181b !important;
+}
+
+html.dark .partial-content-notification[style*="background-color"] {
+  background-color: #18181b !important;
+}
+
+/* Force override with CSS custom properties */
+.partial-content-notification {
+  background: #fffbeb !important;
+}
+
+html.dark .partial-content-notification {
+  background: #18181b !important;
+}
+
+.warning-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  color: #d97706; /* amber-600 */
+}
+
+.dark .warning-icon {
+  color: #fbbf24; /* amber-400 */
+}
+
+.warning-text {
+  font-size: 0.875rem;
+  font-weight: 500;
+  margin: 0; /* Remove margin for inline layout */
+  color: #92400e; /* amber-800 */
+  line-height: 1.5;
+}
+
+.dark .warning-text {
+  color: #fef3c7; /* amber-200 */
+}
+
+.edit-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  background-color: #d97706; /* amber-600 */
+  color: white;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.edit-button:hover {
+  background-color: #b45309; /* amber-700 */
+  transform: scale(1.05);
+}
+
+.guide-button,
+body .guide-button,
+.VPDoc .guide-button,
+[dir] .guide-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.375rem 0.75rem;
+  background-color: #fef3c7 !important; /* amber-100 */
+  color: #92400e;
+  font-size: 0.875rem;
+  border: 1px solid #fcd34d !important; /* amber-300 */
+  border-radius: 0.5rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+html.dark .guide-button,
+html.dark body .guide-button,
+html.dark .VPDoc .guide-button,
+html.dark [dir] .guide-button {
+  background-color: #27272a !important; /* zinc-800 */
+  color: #fef3c7 !important; /* amber-200 */
+  border-color: #52525b !important; /* zinc-600 */
+}
+
+.guide-button:hover {
+  transform: scale(1.05);
+}
+
+.dark .guide-button:hover {
+  background-color: #3f3f46 !important; /* zinc-700 */
+}
+
+/* Smaller button variants */
+.edit-button-small,
+body .edit-button-small,
+.VPDoc .edit-button-small,
+[dir] .edit-button-small {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem; /* Smaller padding */
+  background-color: #d97706 !important; /* amber-600 */
+  color: white;
+  font-size: 0.75rem; /* Smaller font */
+  border-radius: 0.375rem; /* Slightly smaller border radius */
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.edit-button-small:hover {
+  background-color: #b45309 !important; /* amber-700 */
+  transform: scale(1.05);
+}
+
+.guide-button-small,
+body .guide-button-small,
+.VPDoc .guide-button-small,
+[dir] .guide-button-small {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.25rem 0.5rem; /* Smaller padding */
+  background-color: #fef3c7 !important; /* amber-100 */
+  color: #92400e;
+  font-size: 0.75rem; /* Smaller font */
+  border: 1px solid #fcd34d !important; /* amber-300 */
+  border-radius: 0.375rem; /* Slightly smaller border radius */
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+html.dark .guide-button-small,
+html.dark body .guide-button-small,
+html.dark .VPDoc .guide-button-small,
+html.dark [dir] .guide-button-small {
+  background-color: #27272a !important; /* zinc-800 */
+  color: #fef3c7 !important; /* amber-200 */
+  border-color: #52525b !important; /* zinc-600 */
+}
+
+.guide-button-small:hover {
+  transform: scale(1.05);
+}
+
+html.dark .guide-button-small:hover {
+  background-color: #3f3f46 !important; /* zinc-700 */
+}

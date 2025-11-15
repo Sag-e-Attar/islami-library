@@ -42,7 +42,7 @@
               </svg>
             </div>
             <div class="flex-1 flex flex-col gap-2">
-              <a :href="`/authors/${item.author.slug}/`" class="text-1.5rem font-bold mb-3 text-[var(--vp-c-text-1)] hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors no-underline">
+              <a :href="`/authors/${item.author.slug}/`" class="text-1.5rem font-bold mb-0 leading-relaxed text-[var(--vp-c-text-1)] hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors no-underline">
                 {{ item.author.name }}
               </a>
               <span
@@ -124,7 +124,7 @@
             </svg>
           </div>
           <div class="flex-1 flex flex-col gap-1">
-            <a :href="`/authors/${item.author.slug}/`" class="text-lg sm:text-xl font-bold text-[var(--vp-c-text-1)] hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors no-underline">
+            <a :href="`/authors/${item.author.slug}/`" class="text-lg sm:text-xl font-bold leading-relaxed text-[var(--vp-c-text-1)] hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors no-underline">
               {{ item.author.name }}
             </a>
             <span

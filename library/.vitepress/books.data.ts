@@ -7,6 +7,7 @@ export interface Book {
   author: string
   category?: string
   categories?: string[]
+  partialFormatted?: boolean
 }
 
 export interface Author {
@@ -43,7 +44,8 @@ export default createContentLoader('authors/**/*.md', {
         url: page.url,
         author: authorName,
         category: page.frontmatter?.category,
-        categories: page.frontmatter?.categories || []
+        categories: page.frontmatter?.categories || [],
+        partialFormatted: page.frontmatter?.partialFormatted || false
       }
 
       if (!authorMap.has(authorSlug)) {
